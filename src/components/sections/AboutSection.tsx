@@ -50,26 +50,25 @@ const AchievementEntryCard: React.FC<AchievementEntryCardProps> = ({ achievement
 
 interface IconDisplayProps {
   iconName: string;
-  titleKey: string;
-  t: (key: string, fallback?: string) => string;
+  t: (key: string, fallback?: string) => string; // t is kept for potential future use, though titleKey is not used now
   className?: string;
   isMobile?: boolean;
 }
 
-const IconDisplay: React.FC<IconDisplayProps> = ({ iconName, titleKey, t, className, isMobile = false }) => {
+const IconDisplay: React.FC<IconDisplayProps> = ({ iconName, t, className, isMobile = false }) => {
   const IconComponent = getIcon(iconName);
   if (isMobile) {
     return (
-      <div className={cn("flex items-center space-x-3", className)}>
+      <div className={cn("flex items-center mt-4 ml-1", className)}> {/* Adjusted mobile icon display */}
         <IconComponent className="h-8 w-8 text-accent flex-shrink-0" />
-        <p className="text-xs text-muted-foreground font-code">{t(titleKey)}</p>
+        {/* Text label removed for mobile as per request */}
       </div>
     );
   }
   return (
-    <ScrollAppear className={cn("w-full h-full flex flex-col items-center justify-center text-center p-4", className)}>
-      <IconComponent className="h-12 w-12 md:h-16 md:w-16 text-accent mb-3" />
-      <p className="text-xs md:text-sm text-muted-foreground font-code max-w-xs">{t(titleKey)}</p>
+    <ScrollAppear className={cn("flex items-center justify-center", className)}> {/* Simplified for desktop */}
+      <IconComponent className="h-12 w-12 md:h-16 md:w-16 text-accent" />
+      {/* Text label removed for desktop as per request */}
     </ScrollAppear>
   );
 };
@@ -89,58 +88,57 @@ const HistorySection = () => {
         </p>
       </ScrollAppear>
 
-      <div className="relative max-w-5xl mx-auto mt-12"> {/* Increased max-width */}
-        {/* The vertical timeline bar (Desktop) */}
+      <div className="relative max-w-5xl mx-auto mt-12">
         <div className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-1 bg-primary/30 z-0 hidden md:block" style={{height: '100%'}}></div>
-        {/* The vertical timeline bar (Mobile) */}
         <div className="absolute top-0 bottom-0 left-3 transform -translate-x-1/2 w-1 bg-primary/30 z-0 md:hidden" style={{height: '100%'}}></div>
 
-        <div className="space-y-0"> {/* No space-y needed, items manage their own padding */}
+        <div className="space-y-0">
           {achievementsData.map((achievement, index) => {
             const isCardOnLeftForDesktop = index % 2 === 0;
 
             return (
-              <div key={achievement.id} className="relative py-8 md:py-12"> {/* Padding for each item */}
-                {/* Desktop Dot */}
+              <div key={achievement.id} className="relative py-8 md:py-12">
+                {/* Desktop Layout */}
+                <div className="hidden md:flex items-center w-full">
+                  <div className={cn("w-5/12 px-4 flex", isCardOnLeftForDesktop ? "justify-end" : "justify-start")}>
+                    {isCardOnLeftForDesktop ? (
+                      <AchievementEntryCard achievement={achievement} t={t} />
+                    ) : (
+                      <IconDisplay iconName={achievement.iconName} t={t} />
+                    )}
+                  </div>
+                  <div className="w-2/12 px-1 flex-shrink-0 relative"> {/* Central connector line */}
+                    <div className="h-0.5 w-full bg-primary/50"></div>
+                  </div>
+                  <div className={cn("w-5/12 px-4 flex", isCardOnLeftForDesktop ? "justify-start" : "justify-end")}>
+                    {isCardOnLeftForDesktop ? (
+                      <IconDisplay iconName={achievement.iconName} t={t} />
+                    ) : (
+                      <AchievementEntryCard achievement={achievement} t={t} />
+                    )}
+                  </div>
+                </div>
+                
+                {/* Central Dot for Desktop - rendered after the flex container so it can overlay the line */}
                 <div className={cn(
                   "hidden md:block absolute w-6 h-6 rounded-full bg-accent flicker-border-accent border-2 border-background flex items-center justify-center z-10",
-                  "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" // Center dot on the timeline
-                )}>
-                  <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-                </div>
-                {/* Mobile Dot - positioned relative to its item's top */}
-                <div className={cn(
-                  "md:hidden absolute w-6 h-6 rounded-full bg-accent flicker-border-accent border-2 border-background flex items-center justify-center z-10",
-                  "top-8 left-3 transform -translate-x-1/2" // Align with typical card header start
+                  "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                 )}>
                   <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
                 </div>
 
-                {/* Desktop Layout */}
-                <div className="hidden md:flex items-stretch justify-center">
-                  <div className={cn("w-5/12 px-2 flex", isCardOnLeftForDesktop ? "justify-end" : "justify-start")}>
-                    {isCardOnLeftForDesktop ? (
-                      <AchievementEntryCard achievement={achievement} t={t} />
-                    ) : (
-                      <IconDisplay iconName={achievement.iconName} titleKey={achievement.titleKey} t={t} />
-                    )}
-                  </div>
-                  <div className="w-2/12 flex-shrink-0"> {/* Central spacer for timeline */} </div>
-                  <div className={cn("w-5/12 px-2 flex", isCardOnLeftForDesktop ? "justify-start" : "justify-end")}>
-                    {isCardOnLeftForDesktop ? (
-                      <IconDisplay iconName={achievement.iconName} titleKey={achievement.titleKey} t={t} />
-                    ) : (
-                      <AchievementEntryCard achievement={achievement} t={t} />
-                    )}
-                  </div>
+                {/* Mobile Dot */}
+                <div className={cn(
+                  "md:hidden absolute w-6 h-6 rounded-full bg-accent flicker-border-accent border-2 border-background flex items-center justify-center z-10",
+                  "top-8 left-3 transform -translate-x-1/2"
+                )}>
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="md:hidden pl-10 pr-2"> {/* pl-10 to offset for mobile dot at left-3 (-1.5rem from 0) + padding */}
+                <div className="md:hidden pl-10 pr-2">
                   <AchievementEntryCard achievement={achievement} t={t} />
-                  <div className="mt-4">
-                    <IconDisplay iconName={achievement.iconName} titleKey={achievement.titleKey} t={t} isMobile={true} />
-                  </div>
+                  <IconDisplay iconName={achievement.iconName} t={t} isMobile={true} />
                 </div>
               </div>
             );
