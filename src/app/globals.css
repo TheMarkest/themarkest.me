@@ -23,7 +23,7 @@
     --border: 0 0% 35%; /* General borders */
     --input: 0 0% 28%; /* Input background */
     --ring: 180 100% 50%; /* Cyan for focus rings */
-    --radius: 0.5rem;
+    --radius: 0rem; /* Sharp corners */
 
     /* Sidebar specific variables (keeping them as they might be used by some shadcn components) */
     --sidebar-background: 0 0% 18%; /* Darker for sidebar if used */
@@ -63,6 +63,7 @@
     --border: 0 0% 35%;
     --input: 0 0% 28%;
     --ring: 180 100% 50%;
+    --radius: 0rem; /* Sharp corners */
     
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -114,6 +115,9 @@
   .flicker-border-accent {
     animation: flicker-accent-border-shadow 2s infinite alternate;
     border: 1px solid hsl(var(--accent) / 0.5);
+  }
+  .chamfer-tl {
+    clip-path: polygon(0.75rem 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0.75rem);
   }
 }
 
