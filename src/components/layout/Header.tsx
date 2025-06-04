@@ -14,8 +14,8 @@ const Header = () => {
 
   const navItems = [
     { href: '#home', labelKey: 'nav.home' },
-    { href: '#about', labelKey: 'nav.about' },
-    { href: '#skills', labelKey: 'nav.skills' },
+    { href: '#history', labelKey: 'nav.history' },
+    { href: '#services', labelKey: 'nav.services' },
     { href: '#projects', labelKey: 'nav.projects' },
     { href: '#contact', labelKey: 'nav.contact' },
   ];
@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="#home" className="flex items-center gap-2">
           <Code2 className="h-8 w-8 text-primary flicker-text-primary" />
           <GlitchText text={t('appName')} className="font-headline text-2xl font-bold text-primary" />
         </Link>

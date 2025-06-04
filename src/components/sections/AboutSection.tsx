@@ -1,53 +1,61 @@
-// src/components/sections/AboutSection.tsx
+// src/components/sections/AboutSection.tsx renamed to HistorySection conceptually
 "use client";
 
 import { useLanguage } from '@/hooks/useLanguage';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import ScrollAppear from '@/components/ui/ScrollAppear';
 import GlitchText from '@/components/ui/GlitchText';
-import Image from 'next/image';
+import { achievementsData, type Achievement } from '@/data/achievements';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
 
-const AboutSection = () => {
+const AchievementCard: React.FC<{ achievement: Achievement; index: number }> = ({ achievement, index }) => {
+  const { t } = useLanguage();
+  return (
+    <ScrollAppear delay={`delay-${index * 100}`}>
+      <Card className="bg-card/80 backdrop-blur-sm flicker-border-primary h-full flex flex-col">
+        <CardHeader>
+          <CardTitle className="font-code text-xl text-accent">{achievement.year ? `// ${achievement.year}` : `// ${t('appName')}`}</CardTitle>
+          <p className="font-headline text-2xl text-primary">{t(achievement.titleKey)}</p>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <p className="text-muted-foreground leading-relaxed font-body mb-4">
+            {t(achievement.descriptionKey)}
+          </p>
+          {achievement.link && (
+            <Button variant="link" asChild className="p-0 h-auto text-accent hover:text-primary">
+              <a href={achievement.link} target="_blank" rel="noopener noreferrer">
+                {achievement.linkTextKey ? t(achievement.linkTextKey) : 'Learn More'} <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          )}
+        </CardContent>
+      </Card>
+    </ScrollAppear>
+  );
+};
+
+
+const HistorySection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="about" className="container">
+    <section id="history" className="container">
       <ScrollAppear>
-        <h2 className="text-4xl md:text-5xl font-headline mb-12 text-center">
-          <GlitchText text={t('about.title')} className="text-primary" />
+        <h2 className="text-4xl md:text-5xl font-headline mb-4 text-center">
+          <GlitchText text={t('history.title')} className="text-primary" />
         </h2>
+        <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          {t('history.intro')}
+        </p>
       </ScrollAppear>
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        <ScrollAppear delay="delay-200">
-          <Card className="bg-card/80 backdrop-blur-sm flicker-border-primary">
-            <CardHeader>
-              <CardTitle className="font-code text-2xl text-accent">{'>'} WhoWeAre.init</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg text-muted-foreground leading-relaxed font-body">
-                {t('about.content')}
-              </p>
-              <div className="mt-6 font-code text-sm text-primary/80">
-                <p>// STATUS: OPERATIONAL</p>
-                <p>// ETHOS: HIGH_TECH_LOW_LIFE</p>
-                <p>// OBJECTIVE: CHALLENGE_STATUS_QUO</p>
-              </div>
-            </CardContent>
-          </Card>
-        </ScrollAppear>
-        <ScrollAppear className="flex justify-center" delay="delay-400">
-          <Image 
-            src="https://placehold.co/500x500.png" 
-            alt="CyberMarks Team Abstract Visual" 
-            width={500} 
-            height={500} 
-            className="rounded-lg shadow-xl flicker-border-accent object-cover"
-            data-ai-hint="abstract cyberpunk team" 
-          />
-        </ScrollAppear>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {achievementsData.map((achievement, index) => (
+          <AchievementCard key={achievement.id} achievement={achievement} index={index} />
+        ))}
       </div>
     </section>
   );
 };
 
-export default AboutSection;
+export default HistorySection;

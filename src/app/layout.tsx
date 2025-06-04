@@ -20,22 +20,26 @@ const fontSpaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'CyberMarks - Digital Solutions',
-  description: 'CyberMarks: Crafting the future of digital presence with cyberpunk aesthetics and cutting-edge technology.',
-  keywords: 'web development, cybersecurity, digital marketing, cyberpunk, portfolio, themarkest.me',
+  title: 'Марк Богданов | CyberMarks',
+  description: 'Марк Богданов - Руководитель IT-проектов, сооснователь itis.team, Such.Digital, DataSuite. Лектор в СПБГЭУ.',
+  keywords: 'Марк Богданов, Mark Bogdanov, IT проекты, разработка, full-stack, CTO, CyberMarks, themarkest.me, портфолио',
   openGraph: {
-    title: 'CyberMarks - Digital Solutions',
-    description: 'Pioneering digital experiences with a cyberpunk edge.',
+    title: 'Марк Богданов | CyberMarks',
+    description: 'Портфолио Марка Богданова: проекты, компетенции, история.',
     type: 'website',
-    locale: 'en_US',
-    alternateLocale: ['ru_RU'],
-    // TODO: Add url and siteName when domain is configured
-    // url: 'https://themarkest.me', 
-    // siteName: 'CyberMarks',
-    // images: [ { url: 'https://themarkest.me/og-image.png', width: 1200, height: 630, alt: 'CyberMarks Logo' } ],
+    locale: 'ru_RU',
+    alternateLocale: ['en_US'],
+    url: 'https://themarkest.me', 
+    siteName: 'CyberMarks',
+    images: [ { url: 'https://placehold.co/1200x630.png?text=Mark+Bogdanov', width: 1200, height: 630, alt: 'Mark Bogdanov Portfolio' } ], // Replace with actual OG image
   },
-  // TODO: Add twitter specific metadata
-  // twitter: { card: 'summary_large_image', title: 'CyberMarks', description: '...', creator: '@handle', images: ['...'] }
+  twitter: { 
+    card: 'summary_large_image', 
+    title: 'Марк Богданов | CyberMarks', 
+    description: 'Портфолио Марка Богданова: проекты, компетенции, история.', 
+    // creator: '@yourtwitterhandle', // Add your Twitter handle
+    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov'] // Replace with actual Twitter image
+  }
 };
 
 export default function RootLayout({
@@ -44,15 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        {/* Standard Next/Font handles font loading. The user's original setup used <link> tags but next/font is preferred. */}
-        {/* However, to adhere strictly to "DO NOT delete code related to Google Fonts in <head>" and specific font instructions, if direct <link>s were mandatory: */}
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
-        {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /> */}
-        {/* <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" /> */}
-        {/* <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" /> */}
-      </head>
+    <html lang="ru" className="dark"> {/* Default to Russian as per Tilda site primary lang */}
+      <head />
       <body
         className={cn(
           'font-body antialiased',
