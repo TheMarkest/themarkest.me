@@ -83,7 +83,6 @@
 }
 
 @layer base {
-  /* Removed global border: * { @apply border-border; } */
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
@@ -108,13 +107,13 @@
   }
   .flicker-border-primary {
     animation: flicker-primary-border-shadow 2s infinite alternate;
-    border: 1px solid hsl(var(--primary) / 0.5);
+    border: 2px solid hsl(var(--primary) / 0.5);
   }
   .flicker-border-accent {
     animation: flicker-accent-border-shadow 2s infinite alternate;
-    border: 1px solid hsl(var(--accent) / 0.5);
+    border: 2px solid hsl(var(--accent) / 0.5);
   }
-  .chamfer-tr { /* Changed from chamfer-tl to chamfer-tr */
+  .chamfer-tr {
     clip-path: polygon(0% 0%, calc(100% - 0.75rem) 0%, 100% 0.75rem, 100% 100%, 0% 100%);
   }
 }
