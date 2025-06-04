@@ -9,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm chamfer-tl", // rounded-lg will become 0rem via --radius, chamfer-tl applies new shape
+      "rounded-lg border bg-card text-card-foreground shadow-sm chamfer-tr", // Changed from chamfer-tl to chamfer-tr
       className
     )}
     {...props}
