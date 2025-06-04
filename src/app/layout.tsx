@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
@@ -20,25 +21,24 @@ const fontSpaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'Марк Богданов | CyberMarks',
+  title: 'Марк Богданов | TheMarkest',
   description: 'Марк Богданов - Руководитель IT-проектов, сооснователь itis.team, Such.Digital, DataSuite. Лектор в СПБГЭУ.',
-  keywords: 'Марк Богданов, Mark Bogdanov, IT проекты, разработка, full-stack, CTO, CyberMarks, themarkest.me, портфолио',
+  keywords: 'Марк Богданов, Mark Bogdanov, IT проекты, разработка, full-stack, CTO, TheMarkest, themarkest.me, портфолио',
   openGraph: {
-    title: 'Марк Богданов | CyberMarks',
+    title: 'Марк Богданов | TheMarkest',
     description: 'Портфолио Марка Богданова: проекты, компетенции, история.',
     type: 'website',
     locale: 'ru_RU',
     alternateLocale: ['en_US'],
     url: 'https://themarkest.me', 
-    siteName: 'CyberMarks',
-    images: [ { url: 'https://placehold.co/1200x630.png?text=Mark+Bogdanov', width: 1200, height: 630, alt: 'Mark Bogdanov Portfolio' } ], // Replace with actual OG image
+    siteName: 'TheMarkest',
+    images: [ { url: 'https://placehold.co/1200x630.png?text=Mark+Bogdanov', width: 1200, height: 630, alt: 'Mark Bogdanov Portfolio' } ],
   },
   twitter: { 
     card: 'summary_large_image', 
-    title: 'Марк Богданов | CyberMarks', 
+    title: 'Марк Богданов | TheMarkest', 
     description: 'Портфолио Марка Богданова: проекты, компетенции, история.', 
-    // creator: '@yourtwitterhandle', // Add your Twitter handle
-    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov'] // Replace with actual Twitter image
+    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov']
   }
 };
 
@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="dark"> {/* Default to Russian as per Tilda site primary lang */}
+    <html lang="ru" className="dark">
       <head />
       <body
         className={cn(

@@ -1,3 +1,4 @@
+
 // src/components/ui/SkillCloud.tsx
 "use client";
 
@@ -11,7 +12,7 @@ interface SkillCloudProps {
   height?: number;
 }
 
-const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) => {
+const SkillCloud: React.FC<SkillCloudProps> = ({ width = 800, height = 600 }) => { // Increased default size for background
   const mountRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
 
@@ -26,31 +27,29 @@ const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) =>
 
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 250;
+    const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
+    camera.position.z = 300; // Adjusted camera Z for larger radius
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
+    renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     currentMount.appendChild(renderer.domElement);
 
     // Create skill objects (sprites)
     const skillObjects: THREE.Sprite[] = [];
-    const texts: { sprite: THREE.Sprite; initialPosition: THREE.Vector3 }[] = [];
 
     skillsData.forEach((skill, index) => {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       if (!context) return;
 
-      const fontSize = 14 + skill.importance * 2.5; // Scale font size by importance
+      const fontSize = 12 + skill.importance * 2; // Adjusted font size scaling for more skills
       context.font = `bold ${fontSize}px Space Grotesk, monospace`;
-      const textWidth = context.measureText(skill.name).width;
+      const textMetrics = context.measureText(skill.name);
+      const textWidth = textMetrics.width;
       
-      // Adjust canvas size dynamically based on text width and font size
-      canvas.width = textWidth + 20; // Add some padding
-      canvas.height = fontSize + 10; // Add some padding
+      canvas.width = textWidth + 10; // Reduced padding slightly
+      canvas.height = fontSize + 5;  // Reduced padding slightly
 
-      // Re-apply font after canvas resize
       context.font = `bold ${fontSize}px Space Grotesk, monospace`;
       context.fillStyle = skillCategoryColors[skill.category] || '#FFFFFF';
       context.textAlign = 'center';
@@ -58,18 +57,16 @@ const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) =>
       context.fillText(skill.name, canvas.width / 2, canvas.height / 2);
 
       const texture = new THREE.CanvasTexture(canvas);
-      const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
+      const material = new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0.85 }); // Slightly transparent
       const sprite = new THREE.Sprite(material);
       
-      // Scale sprite based on text importance and aspect ratio of canvas
-      const spriteWidth = canvas.width * 0.5; // Adjust multiplier as needed
-      const spriteHeight = canvas.height * 0.5; // Adjust multiplier as needed
+      const spriteWidth = canvas.width * 0.4; 
+      const spriteHeight = canvas.height * 0.4;
       sprite.scale.set(spriteWidth, spriteHeight, 1);
 
-      // Position sprites in a sphere
       const phi = Math.acos(-1 + (2 * index) / skillsData.length);
       const theta = Math.sqrt(skillsData.length * Math.PI) * phi;
-      const radius = 150; 
+      const radius = 220; // Increased radius for more skills
       
       const x = radius * Math.sin(phi) * Math.cos(theta);
       const y = radius * Math.sin(phi) * Math.sin(theta);
@@ -78,54 +75,58 @@ const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) =>
 
       scene.add(sprite);
       skillObjects.push(sprite);
-      texts.push({ sprite, initialPosition: new THREE.Vector3(x,y,z) });
     });
 
     // Mouse interaction
     const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
+    const mouse = new THREE.Vector2(-100, -100); // Initialize mouse off-screen
     let hoveredSprite: THREE.Sprite | null = null;
 
     const onMouseMove = (event: MouseEvent) => {
       if (!currentMount) return;
       const rect = currentMount.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / height) * 2 + 1;
+      mouse.x = ((event.clientX - rect.left) / currentMount.clientWidth) * 2 - 1;
+      mouse.y = -((event.clientY - rect.top) / currentMount.clientHeight) * 2 + 1;
     };
     currentMount.addEventListener('mousemove', onMouseMove);
+    currentMount.addEventListener('mouseleave', () => { // Reset hover when mouse leaves
+        mouse.x = -100;
+        mouse.y = -100;
+    });
+
 
     // Animation loop
-    let rotX = 0.001;
-    let rotY = 0.0005;
+    let rotX = 0.0005; // Slower rotation
+    let rotY = 0.00025; // Slower rotation
 
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate all skill objects
       skillObjects.forEach(obj => {
         obj.position.applyMatrix4(new THREE.Matrix4().makeRotationY(rotX));
         obj.position.applyMatrix4(new THREE.Matrix4().makeRotationX(rotY));
+        // Keep sprites facing the camera
+        obj.quaternion.copy(camera.quaternion);
       });
       
-      // Raycasting for hover effects
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(skillObjects);
 
-      if (intersects.length > 0) {
-        if (hoveredSprite !== intersects[0].object) {
-          // Reset previous hovered sprite
+      if (intersects.length > 0 && intersects[0].object instanceof THREE.Sprite) {
+        const newHoveredSprite = intersects[0].object as THREE.Sprite;
+        if (hoveredSprite !== newHoveredSprite) {
           if (hoveredSprite) {
-            hoveredSprite.scale.divideScalar(1.2);
-            (hoveredSprite.material as THREE.SpriteMaterial).opacity = 1.0;
+            hoveredSprite.scale.divideScalar(1.15);
+            (hoveredSprite.material as THREE.SpriteMaterial).opacity = 0.85;
           }
-          hoveredSprite = intersects[0].object as THREE.Sprite;
-          hoveredSprite.scale.multiplyScalar(1.2);
-          (hoveredSprite.material as THREE.SpriteMaterial).opacity = 0.7; // Example hover effect
+          hoveredSprite = newHoveredSprite;
+          hoveredSprite.scale.multiplyScalar(1.15);
+          (hoveredSprite.material as THREE.SpriteMaterial).opacity = 1.0;
         }
       } else {
         if (hoveredSprite) {
-          hoveredSprite.scale.divideScalar(1.2);
-          (hoveredSprite.material as THREE.SpriteMaterial).opacity = 1.0;
+          hoveredSprite.scale.divideScalar(1.15);
+          (hoveredSprite.material as THREE.SpriteMaterial).opacity = 0.85;
           hoveredSprite = null;
         }
       }
@@ -134,27 +135,30 @@ const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) =>
     };
     animate();
 
-    // Handle resize
     const handleResize = () => {
-      const newWidth = currentMount.clientWidth;
-      const newHeight = Math.min(newWidth * (height/width), height); // Maintain aspect ratio up to max height
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newWidth, newHeight);
+        if (!currentMount) return;
+        const newWidth = currentMount.clientWidth;
+        const newHeight = currentMount.clientHeight; // Use full clientHeight for background
+        
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
     };
-
-    // Use ResizeObserver for better handling of parent resize
+    
     const resizeObserver = new ResizeObserver(handleResize);
-    if (currentMount.parentElement) {
-      resizeObserver.observe(currentMount.parentElement);
+    if (currentMount) { // Observe the mountRef itself if it's defining the size
+      resizeObserver.observe(currentMount);
     }
-    handleResize(); // Initial size
+    handleResize(); 
 
 
-    // Cleanup
     return () => {
       resizeObserver.disconnect();
       currentMount.removeEventListener('mousemove', onMouseMove);
+      currentMount.removeEventListener('mouseleave', () => {
+        mouse.x = -100;
+        mouse.y = -100;
+      });
       if (renderer.domElement.parentNode === currentMount) {
          currentMount.removeChild(renderer.domElement);
       }
@@ -165,14 +169,17 @@ const SkillCloud: React.FC<SkillCloudProps> = ({ width = 600, height = 400 }) =>
           child.material.dispose();
         }
       });
+      skillObjects.length = 0; // Clear the array
     };
-  }, [isClient, width, height]); // Re-run effect if width/height props change
+  }, [isClient]); // Removed width/height dependencies as it will now adapt to parent
 
   if (!isClient) {
-    return <div style={{ width: `${width}px`, height: `${height}px` }} className="bg-card/50 rounded-lg flex items-center justify-center text-muted-foreground"><p>Loading Skill Matrix...</p></div>;
+    // For background, the placeholder might not be visible or necessary. 
+    // It's better to have a div that takes up space.
+    return <div style={{ width: '100%', height: '100%' }} className="absolute inset-0 -z-10" />;
   }
-
-  return <div ref={mountRef} style={{ width: '100%', maxWidth: `${width}px`, height: `${height}px`, margin: '0 auto' }} className="cursor-grab active:cursor-grabbing" />;
+  // Ensure the div takes up space and is styled for background usage.
+  return <div ref={mountRef} style={{ width: '100%', height: '100%' }} className="absolute inset-0 -z-10 cursor-grab active:cursor-grabbing opacity-50" />;
 };
 
 export default SkillCloud;
