@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -114,7 +115,7 @@
     border: 2px solid hsl(var(--accent) / 0.5);
   }
   .chamfer-tr {
-    clip-path: polygon(0% 0%, calc(100% - 0.75rem) 0%, 100% 0.75rem, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, calc(100% - 1.5rem) 0%, 100% 1.5rem, 100% 100%, 0% 100%);
   }
 }
 
@@ -232,3 +233,4 @@
   transform: scale(1) translateY(0);
   filter: blur(0px) grayscale(0%);
 }
+
