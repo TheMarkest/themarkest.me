@@ -38,7 +38,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image', 
     title: 'Марк Богданов | TheMarkest', 
     description: 'Портфолио Марка Богданова: проекты, компетенции, история.', 
-    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov']
+    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov'],
+    url: 'https://themarkest.me'
   }
 };
 
