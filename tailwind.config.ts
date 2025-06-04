@@ -8,6 +8,16 @@ export default {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1.5rem', // 24px
+        sm: '2rem',      // 32px
+        md: '2.5rem',    // 40px
+        lg: '3rem',      // 48px
+        xl: '3.5rem',    // 56px
+      },
+    },
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
