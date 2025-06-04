@@ -108,14 +108,14 @@
   }
   .flicker-border-primary {
     border-color: transparent !important;
-    animation: flicker-primary-border-shadow 2s infinite alternate;
+    animation: flicker-primary-border-shadow 3s infinite alternate;
   }
   .flicker-border-accent {
     border-color: transparent !important;
-    animation: flicker-accent-border-shadow 2s infinite alternate;
+    animation: flicker-accent-border-shadow 3s infinite alternate;
   }
   .chamfer-tr {
-    clip-path: polygon(0% 0%, calc(100% - 1.5rem) 0%, 100% 1.5rem, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, calc(100% - 2.5rem) 0%, 100% 2.5rem, 100% 100%, 0% 100%);
   }
 }
 
