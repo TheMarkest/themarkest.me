@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { Suspense } from 'react'; // Added Suspense import
 
 const fontInter = Inter({
   subsets: ['latin'],
@@ -68,7 +69,11 @@ export default function RootLayout({
           </div>
           <Toaster />
         </LanguageProvider>
-        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {gaId && (
+          <Suspense fallback={null}>
+            <GoogleAnalytics gaId={gaId} />
+          </Suspense>
+        )}
       </body>
     </html>
   );
