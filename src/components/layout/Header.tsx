@@ -2,11 +2,12 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/hooks/useLanguage';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Code2 } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import GlitchText from '@/components/ui/GlitchText';
 
 const Header = () => {
@@ -24,7 +25,13 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-primary/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between">
         <Link href="#home" className="flex items-center gap-2">
-          <Code2 className="h-8 w-8 text-primary flicker-text-primary" />
+          <Image 
+            src="/logo.png" 
+            alt={t('appName') + " logo"} 
+            width={32} 
+            height={32}
+            priority 
+          />
           <GlitchText text={t('appName')} className="font-headline text-2xl font-bold text-primary" />
         </Link>
 
