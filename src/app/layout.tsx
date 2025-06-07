@@ -48,6 +48,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = "G-544J956PQ1"; // Directly use the provided Google Analytics ID
+
   return (
     <html lang="ru" className="dark">
       <head />
@@ -66,7 +68,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </LanguageProvider>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
+        {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>
     </html>
   );
