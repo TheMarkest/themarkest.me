@@ -88,7 +88,7 @@ const HistorySection = () => {
 
       <div className="relative max-w-5xl mx-auto mt-12">
         <div className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-1 bg-primary/30 z-0 hidden md:block" style={{height: '100%'}}></div>
-        <div className="absolute top-0 bottom-0 left-3 transform -translate-x-1/2 w-1 bg-primary/30 z-0 md:hidden" style={{height: '100%'}}></div>
+        <div className="absolute top-0 bottom-0 left-4 transform -translate-x-1/2 w-1 bg-primary/30 z-0 md:hidden" style={{height: '100%'}}></div>
 
         <div className="space-y-0">
           {achievementsData.map((achievement, index) => {
@@ -130,7 +130,7 @@ const HistorySection = () => {
                 {/* Central Dot for Desktop */}
                 <div className={cn(
                   "hidden md:block absolute w-6 h-6 rounded-full bg-accent flicker-border-accent border-2 border-background flex items-center justify-center z-10",
-                  "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" // Adjusted to ensure it's exactly on the vertical line
+                  "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
                 )}>
                   <div className="w-2.5 h-2.5 rounded-full bg-accent"></div>
                 </div>
@@ -138,13 +138,13 @@ const HistorySection = () => {
                 {/* Mobile Dot */}
                 <div className={cn(
                   "md:hidden absolute w-6 h-6 rounded-full bg-accent flicker-border-accent border-2 border-background flex items-center justify-center z-10",
-                  "top-8 left-3 transform -translate-x-1/2" // Ensure this aligns with the mobile timeline bar
+                  "top-8 left-4 transform -translate-x-1/2" 
                 )}>
                   <div className="w-2.5 h-2.5 rounded-full bg-accent"></div>
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="md:hidden pl-10 pr-2"> {/* Ensure padding aligns with dot position */}
+                <div className="md:hidden pl-12 pr-2"> 
                   <AchievementEntryCard achievement={achievement} t={t} />
                   <IconDisplay iconName={achievement.iconName} t={t} isMobile={true} />
                 </div>
