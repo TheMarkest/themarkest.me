@@ -14,7 +14,7 @@ export const achievementsData: Achievement[] = [
     id: 'lecturerSPbSUE',
     titleKey: 'achievements.lecturerSPbSUE.title',
     descriptionKey: 'achievements.lecturerSPbSUE.description',
-    year: '2022 - Present',
+    year: '2022 - 2023',
     iconName: 'Presentation',
   },
   {
