@@ -144,7 +144,7 @@ const HistorySection = () => {
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="md:hidden pl-12 pr-2"> 
+                <div className="md:hidden pl-14 pr-2"> 
                   <AchievementEntryCard achievement={achievement} t={t} />
                   <IconDisplay iconName={achievement.iconName} t={t} isMobile={true} />
                 </div>
