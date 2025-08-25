@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TheMarkest – Portfolio</title>
   <meta name="description" content="Portfolio of Mark Bogdanov – IT product development, AR/VR, rapid prototyping, motion tracking, consulting." />
-  <link rel="icon" href="../public/favicon.ico" />
+  <!-- Self-contained favicon (SVG data URI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23050a10'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='28' font-weight='700' fill='%2366e4ff'%3EM%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,7 +17,7 @@
 <body>
   <header class="site-header">
     <div class="container flex between center-v">
-      <div class="logo">TheMarkest</div>
+  <div class="logo" title="TheMarkest">TheMarkest</div>
       <nav class="nav" id="nav">
         <a href="#top" data-i18n="nav.home"></a>
         <a href="#history" data-i18n="nav.history"></a>
@@ -39,7 +40,7 @@
         <a href="#projects" class="btn primary" data-i18n="hero.cta"></a>
       </div>
       <div class="hero-canvas-wrapper">
-        <canvas id="skills-canvas" aria-label="Skills visualization" role="img"></canvas>
+  <canvas id="skills-canvas" aria-label="Skills visualization" role="img"></canvas>
         <p class="caption" data-i18n="skills.intro"></p>
       </div>
     </section>
@@ -65,15 +66,15 @@
       <h2 data-i18n="contact.title"></h2>
       <p data-i18n="contact.intro" class="section-intro"></p>
       <div class="contact-actions">
-        <a class="btn" href="mailto:markbogdanovofficial@gmail.com" data-i18n="contact.form.email"></a>
-        <a class="btn" href="https://t.me/themarkest" target="_blank" rel="noopener" data-i18n="contact.emergencyButton"></a>
+  <a class="btn" href="mailto:markbogdanovofficial@gmail.com" data-i18n="contact.form.email" rel="noopener"></a>
+  <a class="btn" href="https://t.me/themarkest" target="_blank" rel="noopener" data-i18n="contact.emergencyButton"></a>
       </div>
       <form id="contact-form" class="contact-form" onsubmit="return false;">
         <input name="name" placeholder="" data-i18n-placeholder="contact.form.name" required />
         <input type="email" name="email" placeholder="" data-i18n-placeholder="contact.form.email" required />
         <textarea name="message" placeholder="" data-i18n-placeholder="contact.form.message" required></textarea>
         <button class="btn primary" data-i18n="contact.form.send"></button>
-        <p id="form-status" class="status" aria-live="polite"></p>
+  <p id="form-status" class="status" aria-live="polite" role="status"></p>
       </form>
     </section>
   </main>
