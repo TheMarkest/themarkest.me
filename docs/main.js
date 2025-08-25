@@ -42,7 +42,52 @@ function buildTimeline(){const list=document.getElementById('achievements-timeli
 function buildServices(){const grid=document.getElementById('services-grid'); if(!grid) return; grid.innerHTML=''; services.forEach(id=>{const card=document.createElement('div'); card.className='card'; card.innerHTML=`<h3 data-i18n="services.${id}.title"></h3><p data-i18n="services.${id}.description"></p>`; grid.appendChild(card);});}
 function buildProjects(){const grid=document.getElementById('projects-grid'); if(!grid) return; grid.innerHTML=''; projects.forEach(p=>{const c=document.createElement('div'); c.className='card'; c.innerHTML=`<h3 data-i18n="${p.titleKey}"></h3><p data-i18n="${p.descriptionKey}"></p><div class='tag-row'>${p.tags.map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`; grid.appendChild(c);});}
 
-function initThree(){const canvas=document.getElementById('skills-canvas'); if(!canvas||!window.THREE) return; const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); const w=canvas.clientWidth||400; const h=canvas.clientHeight||400; renderer.setSize(w,h,false); const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(55,w/h,0.1,1000); camera.position.set(0,0,60); const group=new THREE.Group(); scene.add(group); const colorByCat={Software:0x66e4ff,CreativeTech:0xbf7bff,HardwareIoT:0xff8c2b,Methodologies:0x5fff81,ProductivityTools:0xfff04d,BusinessSystems:0x5aa8ff,SoftSkills:0xb0b2b5,Other:0xffffff}; const sphereRadius=25; skills.forEach(s=>{ const phi=Math.acos(2*Math.random()-1); const theta=Math.random()*Math.PI*2; const r=sphereRadius*(0.6+Math.random()*0.4); const x=r*Math.sin(phi)*Math.cos(theta); const y=r*Math.sin(phi)*Math.sin(theta); const z=r*Math.cos(phi); const size=1+s.importance*0.6; const geo=new THREE.SphereGeometry(size,18,18); const mat=new THREE.MeshBasicMaterial({color:colorByCat[s.category]||0xffffff}); const mesh=new THREE.Mesh(geo,mat); mesh.position.set(x,y,z); mesh.userData={skill:s}; group.add(mesh); }); const raycaster=new THREE.Raycaster(); const pointer=new THREE.Vector2(); const tooltip=document.createElement('div'); Object.assign(tooltip.style,{position:'absolute',pointerEvents:'none',fontSize:'10px',background:'rgba(10,15,20,.8)',padding:'4px 6px',border:'1px solid #18212b',borderRadius:'4px',opacity:'0',transition:'opacity .2s'}); canvas.parentElement.appendChild(tooltip); canvas.addEventListener('mousemove',e=>{const rect=canvas.getBoundingClientRect(); pointer.x=((e.clientX-rect.left)/rect.width)*2-1; pointer.y=-((e.clientY-rect.top)/rect.height)*2+1; raycaster.setFromCamera(pointer,camera); const it=raycaster.intersectObjects(group.children); if(it.length){ const s=it[0].object.userData.skill; tooltip.textContent=s.name; tooltip.style.left=(e.clientX-rect.left+12)+'px'; tooltip.style.top=(e.clientY-rect.top+12)+'px'; tooltip.style.opacity='1'; } else tooltip.style.opacity='0';}); function animate(){requestAnimationFrame(animate); group.rotation.y+=0.0015; group.rotation.x+=0.0009; renderer.render(scene,camera);} animate(); window.addEventListener('resize',()=>{const w2=canvas.clientWidth; const h2=canvas.clientHeight; renderer.setSize(w2,h2,false); camera.aspect=w2/h2; camera.updateProjectionMatrix();}); }
+function initThree(){
+	const canvas=document.getElementById('skills-canvas'); if(!canvas||!window.THREE) return;
+	const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+	const resize=()=>{const w=canvas.clientWidth||600; const h=canvas.clientHeight||600; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();};
+	const scene=new THREE.Scene();
+	const camera=new THREE.PerspectiveCamera(70,1,0.1,2000); camera.position.set(0,0,500);
+	resize();
+	// Category colors (hex strings for sprite text fill)
+	const catColors={Software:'#66E4FF',CreativeTech:'#BF7BFF',HardwareIoT:'#FF8C2B',Methodologies:'#5FFF81',ProductivityTools:'#FFF04D',BusinessSystems:'#5AA8FF',SoftSkills:'#B0B2B5',Other:'#FFFFFF'};
+	const group=new THREE.Group(); scene.add(group);
+	// Deterministic spherical (Fibonacci-like) distribution similar to original SkillCloud
+	const N=skills.length; const radius=320; const sprites=[];
+	skills.forEach((s,i)=>{
+		const phi=Math.acos(-1 + (2*i)/N);
+		const theta=Math.sqrt(N*Math.PI)*phi;
+		const x=radius*Math.sin(phi)*Math.cos(theta);
+		const y=radius*Math.sin(phi)*Math.sin(theta);
+		const z=radius*Math.cos(phi);
+		// Canvas for text sprite
+		const imp= s.importance || 3;
+		const fontSize=12+imp*2; // scale
+		const pad=6;
+		const cv=document.createElement('canvas');
+		const ctx=cv.getContext('2d'); if(!ctx) return;
+		ctx.font=`bold ${fontSize}px Inter,Segoe UI,sans-serif`;
+		const tw=ctx.measureText(s.name).width;
+		cv.width=tw+pad*2; cv.height=fontSize+pad*2;
+		ctx.font=`bold ${fontSize}px Inter,Segoe UI,sans-serif`;
+		ctx.textAlign='center'; ctx.textBaseline='middle';
+		ctx.fillStyle=catColors[s.category]||'#FFFFFF';
+		ctx.fillText(s.name, cv.width/2, cv.height/2);
+		const tex=new THREE.CanvasTexture(cv);
+		const mat=new THREE.SpriteMaterial({map:tex,transparent:true,opacity:0.85});
+		const sprite=new THREE.Sprite(mat);
+		const scale=0.9; sprite.scale.set(cv.width*scale, cv.height*scale, 1);
+		sprite.position.set(x,y,z);
+		sprite.userData={skill:s,baseScale:sprite.scale.clone()};
+		group.add(sprite); sprites.push(sprite);
+	});
+	// Interaction (raycast hover)
+	const raycaster=new THREE.Raycaster(); const pointer=new THREE.Vector2(-100,-100); let hovered=null;
+	canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect(); pointer.x=((e.clientX-r.left)/r.width)*2-1; pointer.y=-((e.clientY-r.top)/r.height)*2+1;});
+	canvas.addEventListener('mouseleave',()=>{pointer.x=-100; pointer.y=-100;});
+	function animate(){requestAnimationFrame(animate); group.rotation.y+=0.0012; group.rotation.x+=0.0005; raycaster.setFromCamera(pointer,camera); const hits=raycaster.intersectObjects(sprites); if(hits.length){ const obj=hits[0].object; if(hovered!==obj){ if(hovered){hovered.material.opacity=0.85; hovered.scale.copy(hovered.userData.baseScale);} hovered=obj; hovered.material.opacity=1; hovered.scale.copy(hovered.userData.baseScale).multiplyScalar(1.2);} } else if(hovered){ hovered.material.opacity=0.85; hovered.scale.copy(hovered.userData.baseScale); hovered=null;} renderer.render(scene,camera);} animate();
+	window.addEventListener('resize',resize);
+}
 
 function refreshDynamic(){buildTimeline(); buildServices(); buildProjects(); applyI18n();}
 
