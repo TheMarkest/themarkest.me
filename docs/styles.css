@@ -1,0 +1,2 @@
+/* Proxy to root styles or duplicate for isolation */
+@import url('../styles.css');
