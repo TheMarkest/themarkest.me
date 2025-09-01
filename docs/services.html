@@ -7,7 +7,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@500;700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
-<script src="three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>(function(){function needFull(){try{if(!window.THREE)return true;var r=THREE.WebGLRenderer&&THREE.WebGLRenderer.prototype.render;if(!r)return true;if(r.toString().length<60)return true;if(!THREE.Raycaster||THREE.Raycaster.prototype.intersectObjects.toString().length<60)return true;return false;}catch(e){return true;}}var c=document.getElementById('skills-canvas');if(needFull()){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';s.onload=function(){if(window.initSkillsSphere&&c&&!c.__initialized){window.initSkillsSphere(c);c.__initialized=true;}};document.head.appendChild(s);} else if(window.initSkillsSphere&&c&&!c.__initialized){window.initSkillsSphere(c);c.__initialized=true;}})();</script>
 <script defer src="skills-data.js"></script>
 <script defer src="skills-sphere.js"></script>
 <script defer src="layout.js"></script>
