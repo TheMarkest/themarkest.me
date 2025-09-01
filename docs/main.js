@@ -9,14 +9,9 @@ const locales = {
 
 // Skills moved to standalone file (skills-data.js) exposed via window.SKILLS_DATA
 
-const achievements = ['lecturerSPbSUE','goVanlife','suchDigital','arHunter','hackathons','dataSuite','itisTeam','events','junction2016','itSchools'];
+// Achievements moved to achievements-data.js (window.ACHIEVEMENTS)
 const services = ['itDevelopment','speaker','startupConsulting','mentor','eventOrganization','rapidPrototyping'];
-const projects = [
-	{ id: 'go-vanlife', titleKey: 'projectGoVanlife.title', descriptionKey: 'projectGoVanlife.description', tags:['Mobile App','React Native','Firebase','Community'], link:'https://go-vanlife.ru/' },
-	{ id: 'ar-hunter', titleKey: 'projectArHunter.title', descriptionKey: 'projectArHunter.description', tags:['AR','Unity','Mobile Game','CTO'], link:'http://arhunter.org/' },
-	{ id: 'data-suite', titleKey: 'projectDataSuite.title', descriptionKey: 'projectDataSuite.description', tags:['Wearables','IoT','Motion Tracking','XPRIZE'], link:'https://www.xprize.org/prizes/avatar' },
-	{ id: 'project-alpha', titleKey: 'projectAlpha.title', descriptionKey: 'projectAlpha.description', tags:['Next.js','TypeScript','Firebase','AI Integration'], link:'#' },
-];
+// Projects section removed
 
 let currentLang = (localStorage.getItem('lang')||'en');
 
@@ -35,13 +30,26 @@ const roles=['hero.role1','hero.role2','hero.role3','hero.role4','hero.role5','h
 let roleIdx=0; function rotateRole(){const el=document.getElementById('role-rotator'); if(!el) return; el.textContent=locales[currentLang][roles[roleIdx%roles.length]]; roleIdx++;}
 setInterval(rotateRole,2500);
 
-function buildTimeline(){const list=document.getElementById('achievements-timeline'); if(!list) return; list.innerHTML=''; achievements.forEach(id=>{const li=document.createElement('li'); const t=`achievements.${id}.title`; const d=`achievements.${id}.description`; li.innerHTML=`<strong>${locales[currentLang][t]||t}</strong><br><span class='small'>${locales[currentLang][d]||d}</span>`; list.appendChild(li);});}
+function buildTimeline(){
+	const list=document.getElementById('achievements-timeline'); if(!list) return;
+	if(!window.ACHIEVEMENTS){console.warn('[achievements] data missing'); return;}
+	list.innerHTML='';
+	window.ACHIEVEMENTS.forEach(item=>{
+		const li=document.createElement('li');
+		li.className='achievement-item';
+		const title=item.title?.[currentLang]||item.title?.en||item.id;
+		const desc=item.description?.[currentLang]||item.description?.en||'';
+		const icon=item.icon||'•';
+		li.innerHTML=`<div class="ach-icon" aria-hidden="true">${icon}</div><div class="ach-text"><strong>${title}</strong><br><span class='small'>${desc}</span></div>`;
+		list.appendChild(li);
+	});
+}
 function buildServices(){const grid=document.getElementById('services-grid'); if(!grid) return; grid.innerHTML=''; services.forEach(id=>{const card=document.createElement('div'); card.className='card'; card.innerHTML=`<h3 data-i18n="services.${id}.title"></h3><p data-i18n="services.${id}.description"></p>`; grid.appendChild(card);});}
-function buildProjects(){const grid=document.getElementById('projects-grid'); if(!grid) return; grid.innerHTML=''; projects.forEach(p=>{const c=document.createElement('div'); c.className='card'; c.innerHTML=`<h3 data-i18n="${p.titleKey}"></h3><p data-i18n="${p.descriptionKey}"></p><div class='tag-row'>${p.tags.map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`; grid.appendChild(c);});}
+// buildProjects removed
 
 // Three.js init moved to skills-sphere.js (initSkillsSphere)
 
-function refreshDynamic(){buildTimeline(); buildServices(); buildProjects(); applyI18n();}
+function refreshDynamic(){buildTimeline(); buildServices(); applyI18n();}
 
 window.addEventListener('DOMContentLoaded',()=>{applyI18n(); rotateRole(); refreshDynamic(); const canvas=document.getElementById('skills-canvas'); if(window.initSkillsSphere) window.initSkillsSphere(canvas); const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); const form=document.getElementById('contact-form'); if(form){form.addEventListener('submit',e=>{e.preventDefault(); const status=document.getElementById('form-status'); if(status){status.textContent=locales[currentLang]['contact.success']||'Sent'; status.style.opacity='1'; setTimeout(()=>status.style.opacity='0',3000);} form.reset();});}});
 

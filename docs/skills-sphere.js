@@ -1,40 +1,7 @@
 // Three.js skills sphere background (depends on THREE + SKILLS_DATA + SKILL_CATEGORY_COLORS)
 window.initSkillsSphere = function initSkillsSphere(canvas, _attempt=0){
   if(!canvas){console.warn('[skills-sphere] canvas not found'); return;}
-  // Ensure THREE is present; if not, inject fallback script & retry with increasing delay
-  if(!window.THREE){
-    // Expanded list includes non-minified variants because some newer Three.js versions no longer ship three.min.js on all CDNs
-    const cdns=[
-      'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js',
-      'https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.js',
-      'https://unpkg.com/three@0.161.0/build/three.min.js',
-      'https://unpkg.com/three@0.161.0/build/three.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.161.0/three.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.161.0/three.js'
-    ];
-    // Track which index we've tried via data attribute
-    let idx=parseInt(document.documentElement.getAttribute('data-three-cdn-idx')||'0',10);
-    if(!document.getElementById('threejs-fallback')){
-      const lib=document.createElement('script');
-      lib.id='threejs-fallback';
-      lib.src=cdns[idx % cdns.length];
-      lib.onload=()=>{console.info('[skills-sphere] loaded three from', lib.src); initSkillsSphere(canvas,_attempt+1);};
-      lib.onerror=()=>{
-        console.warn('[skills-sphere] cdn failed', lib.src);
-        lib.remove();
-        document.documentElement.setAttribute('data-three-cdn-idx', (idx+1).toString());
-        setTimeout(()=>initSkillsSphere(canvas,_attempt+1), 120);
-      };
-      document.head.appendChild(lib);
-    } else if(_attempt<90){
-      // existing tag present but not yet executed
-      return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),100);
-    } else {
-      console.error('[skills-sphere] THREE not loaded after multi-CDN attempts');
-      showLoadError(canvas,'Unable to load 3D engine');
-    }
-    return; // wait for load path
-  }
+  if(!window.THREE){console.error('[skills-sphere] THREE library missing (ensure three.min.js is present)'); showLoadError(canvas,'3D engine missing'); return;}
   if(!window.SKILLS_DATA){ if(_attempt<30){return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),80);} console.error('[skills-sphere] skills data missing'); showLoadError(canvas,'Skills data not available'); return; }
 
   const skills = window.SKILLS_DATA;
