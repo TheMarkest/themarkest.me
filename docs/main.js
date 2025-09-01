@@ -56,4 +56,31 @@ function highlightActiveNav(){const nav=document.getElementById('main-nav'); if(
 
 window.addEventListener('DOMContentLoaded',()=>{applyI18n(); rotateRole(); refreshDynamic(); const canvas=document.getElementById('skills-canvas'); if(window.initSkillsSphere) window.initSkillsSphere(canvas); const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); const form=document.getElementById('contact-form'); if(form){form.addEventListener('submit',e=>{e.preventDefault(); const status=document.getElementById('form-status'); if(status){status.textContent=locales[currentLang]['contact.success']||'Sent'; status.style.opacity='1'; setTimeout(()=>status.style.opacity='0',3000);} form.reset();});}});
 
+// Mobile nav toggle (runs after partial injection too)
+function setupNavToggle(){
+	const btn=document.getElementById('nav-toggle');
+	const nav=document.getElementById('main-nav');
+	if(!btn||!nav) return;
+	btn.addEventListener('click',()=>{
+		const open=nav.classList.toggle('open');
+		btn.setAttribute('aria-expanded',open?'true':'false');
+		document.body.classList.toggle('nav-open',open);
+	});
+	// Close on link click (mobile)
+	nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+		if(window.matchMedia('(max-width:819px)').matches){
+			nav.classList.remove('open');
+			btn.setAttribute('aria-expanded','false');
+			document.body.classList.remove('nav-open');
+		}
+	}));
+}
+
+// Expose to refreshDynamic after partial load
+window.setupNavToggle=setupNavToggle;
+
+// Call after dynamic injection
+const observer=new MutationObserver(()=>{setupNavToggle();});
+observer.observe(document.getElementById('site-header')||document.body,{childList:true,subtree:true});
+
 window.__SITE_READY__=true;
