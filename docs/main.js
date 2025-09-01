@@ -22,9 +22,19 @@ function applyI18n(){
 	document.querySelectorAll('.lang-switch button').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===currentLang));
 }
 
-['lang-en','lang-ru'].forEach(id=>{
-	const btn=document.getElementById(id); if(btn){btn.addEventListener('click',()=>{currentLang=id==='lang-en'?'en':'ru';localStorage.setItem('lang',currentLang);refreshDynamic();});}
-});
+function setupLangButtons(){
+	['lang-en','lang-ru'].forEach(id=>{
+		const btn=document.getElementById(id);
+		if(btn && !btn.dataset.bound){
+			btn.addEventListener('click',()=>{
+				currentLang = id==='lang-en' ? 'en' : 'ru';
+				localStorage.setItem('lang',currentLang);
+				refreshDynamic();
+			});
+			btn.dataset.bound='1';
+		}
+	});
+}
 
 const roles=['hero.role1','hero.role2','hero.role3','hero.role4','hero.role5','hero.role6'];
 let roleIdx=0; function rotateRole(){const el=document.getElementById('role-rotator'); if(!el) return; el.textContent=locales[currentLang][roles[roleIdx%roles.length]]; roleIdx++;}
@@ -54,7 +64,7 @@ function buildMarket(){const wrap=document.getElementById('market-grid'); if(!wr
 function refreshDynamic(){buildTimeline(); buildServices(); buildNews(); buildMarket(); applyI18n(); highlightActiveNav();}
 function highlightActiveNav(){const nav=document.getElementById('main-nav'); if(!nav) return; const path=location.pathname.split('/').pop(); nav.querySelectorAll('a').forEach(a=>{const active = a.getAttribute('href')===path || (a.getAttribute('href').endsWith('index.html') && (path===''||path==='index.html')); a.classList.toggle('active',active);});}
 
-window.addEventListener('DOMContentLoaded',()=>{applyI18n(); rotateRole(); refreshDynamic(); const canvas=document.getElementById('skills-canvas'); if(window.initSkillsSphere) window.initSkillsSphere(canvas); const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); const form=document.getElementById('contact-form'); if(form){form.addEventListener('submit',e=>{e.preventDefault(); const status=document.getElementById('form-status'); if(status){status.textContent=locales[currentLang]['contact.success']||'Sent'; status.style.opacity='1'; setTimeout(()=>status.style.opacity='0',3000);} form.reset();});}});
+window.addEventListener('DOMContentLoaded',()=>{applyI18n(); rotateRole(); refreshDynamic(); setupLangButtons(); const canvas=document.getElementById('skills-canvas'); if(window.initSkillsSphere) window.initSkillsSphere(canvas); const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); const form=document.getElementById('contact-form'); if(form){form.addEventListener('submit',e=>{e.preventDefault(); const status=document.getElementById('form-status'); if(status){status.textContent=locales[currentLang]['contact.success']||'Sent'; status.style.opacity='1'; setTimeout(()=>status.style.opacity='0',3000);} form.reset();});}});
 
 // Mobile nav toggle (runs after partial injection too)
 function setupNavToggle(){
@@ -78,9 +88,10 @@ function setupNavToggle(){
 
 // Expose to refreshDynamic after partial load
 window.setupNavToggle=setupNavToggle;
+window.setupLangButtons=setupLangButtons;
 
 // Call after dynamic injection
-const observer=new MutationObserver(()=>{setupNavToggle();});
+const observer=new MutationObserver(()=>{setupNavToggle(); setupLangButtons(); applyI18n();});
 observer.observe(document.getElementById('site-header')||document.body,{childList:true,subtree:true});
 
 window.__SITE_READY__=true;
