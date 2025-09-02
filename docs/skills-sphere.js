@@ -1,73 +1,71 @@
 // Three.js skills sphere background (depends on THREE + SKILLS_DATA + SKILL_CATEGORY_COLORS)
 window.initSkillsSphere = function initSkillsSphere(canvas, _attempt=0){
-  if(!canvas){console.warn('[skills-sphere] canvas not found'); return;}
-  if(!window.THREE){console.error('[skills-sphere] THREE library missing (ensure three.min.js is present)'); showLoadError(canvas,'3D engine missing'); return;}
-  if(!window.SKILLS_DATA){ if(_attempt<30){return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),80);} console.error('[skills-sphere] skills data missing'); showLoadError(canvas,'Skills data not available'); return; }
+  try {
+    if(!canvas){console.warn('[skills-sphere] canvas not found'); return;}
+    if(!window.THREE){console.error('[skills-sphere] THREE missing'); showLoadError(canvas,'3D engine missing'); return;}
+    if(typeof THREE.WebGLRenderer!=='function'){console.error('[skills-sphere] WebGLRenderer unavailable'); showLoadError(canvas,'WebGL not supported'); return;}
+    if(!window.SKILLS_DATA){ if(_attempt<40){return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),80);} console.error('[skills-sphere] skills data missing'); showLoadError(canvas,'Skills data not available'); return; }
 
-  const skills = window.SKILLS_DATA;
-  const colors = window.SKILL_CATEGORY_COLORS || {};
+    const skills = window.SKILLS_DATA;
+    const colors = window.SKILL_CATEGORY_COLORS || {};
 
-  // Ensure canvas has layout size; if zero, retry
-  const cw = canvas.clientWidth;
-  const ch = canvas.clientHeight;
-  if((!cw || !ch) && _attempt<25){ return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),80); }
-  // Fallback explicit size if still zero
-  if(!canvas.style.width) canvas.style.width = '100%';
-  if(!canvas.style.height) canvas.style.height = '100%';
+    // Ensure canvas has layout size; if zero, retry
+    const cw = canvas.clientWidth;
+    const ch = canvas.clientHeight;
+    if((!cw || !ch) && _attempt<25){ return setTimeout(()=>initSkillsSphere(canvas,_attempt+1),90); }
+    // Fallback explicit size if still zero
+    if(!canvas.style.width) canvas.style.width = '100%';
+    if(!canvas.style.height) canvas.style.height = '100%';
 
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  const scene=new THREE.Scene();
-  scene.fog=new THREE.FogExp2('#030508',0.0007);
-  const camera=new THREE.PerspectiveCamera(68,1,0.1,4000); camera.position.set(0,0,1050);
-  function resize(){
-    const w=canvas.clientWidth||cw||800; const h=canvas.clientHeight||ch||600;
-    if(!w||!h) return; // skip invalid
-    renderer.setSize(w,h,false);
-    camera.aspect=w/h; camera.updateProjectionMatrix();
+    let renderer;
+    try {
+      renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    } catch(e){ console.error('[skills-sphere] renderer failed', e); showLoadError(canvas,'WebGL init failed'); return; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    const scene=new THREE.Scene();
+    scene.fog=new THREE.FogExp2('#030508',0.0007);
+    const camera=new THREE.PerspectiveCamera(68,1,0.1,4000); camera.position.set(0,0,1050);
+    function resize(){
+      const w=canvas.clientWidth||cw||800; const h=canvas.clientHeight||ch||600;
+      if(!w||!h) return;
+      renderer.setSize(w,h,false);
+      camera.aspect=w/h; camera.updateProjectionMatrix();
+    }
+    resize();
+    const group=new THREE.Group(); scene.add(group);
+    const N=skills.length; const radius=500; const spheres=[];
+    for(let i=0;i<N;i++){
+      const s=skills[i];
+      const phi=Math.acos(-1 + (2*i)/N);
+      const theta=Math.sqrt(N*Math.PI)*phi;
+      const x=radius*Math.sin(phi)*Math.cos(theta);
+      const y=radius*Math.sin(phi)*Math.sin(theta);
+      const z=radius*Math.cos(phi);
+      const r=5 + s.importance*2.8;
+      const geo=new THREE.SphereGeometry(r,20,20);
+      const mat=new THREE.MeshBasicMaterial({color:colors[s.category]||0xffffff});
+      const mesh=new THREE.Mesh(geo,mat);
+      mesh.position.set(x,y,z);
+      mesh.userData.skill=s;
+      group.add(mesh); spheres.push(mesh);
+    }
+    if(!spheres.length){console.error('[skills-sphere] no spheres created'); showLoadError(canvas,'No skills to render');}
+    // Starfield
+    const starGeo=new THREE.BufferGeometry(); const starCount=600; const pos=new Float32Array(starCount*3);
+    for(let i=0;i<starCount;i++){const R=1400*Math.random(); const th=Math.random()*Math.PI*2; const ph=Math.acos(2*Math.random()-1); pos[i*3]=R*Math.sin(ph)*Math.cos(th); pos[i*3+1]=R*Math.sin(ph)*Math.sin(th); pos[i*3+2]=R*Math.cos(ph);} starGeo.setAttribute('position',new THREE.BufferAttribute(pos,3)); scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0x1a3b55,size:2,opacity:.32,transparent:true})));
+    const raycaster=new THREE.Raycaster(); const pointer=new THREE.Vector2(-100,-100); let hovered=null;
+    const tooltip=document.createElement('div'); Object.assign(tooltip.style,{position:'absolute',pointerEvents:'none',fontSize:'11px',padding:'4px 6px',background:'rgba(10,15,22,.9)',border:'1px solid #1d2c38',borderRadius:'4px',color:'#e8f4fa',letterSpacing:'0.5px',transform:'translate(-50%,-140%)',whiteSpace:'nowrap',opacity:'0',transition:'opacity .18s'}); if(canvas.parentElement){canvas.parentElement.style.position='relative'; canvas.parentElement.appendChild(tooltip);} else {console.warn('[skills-sphere] canvas has no parent');}
+    canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect(); pointer.x=((e.clientX-r.left)/r.width)*2-1; pointer.y=-((e.clientY-r.top)/r.height)*2+1;});
+    canvas.addEventListener('mouseleave',()=>{pointer.x=-100; pointer.y=-100; if(hovered){hovered.scale.divideScalar(1.35); hovered=null; tooltip.style.opacity='0';}});
+    let t=0; let frames=0; let stopped=false;
+    function animate(){ if(stopped) return; requestAnimationFrame(animate); t+=0.0012; frames++; group.rotation.y+=0.0009; group.rotation.x+=0.0003; const pulse=Math.sin(t*2); spheres.forEach(m=>{const scale=1 + pulse*0.035; m.scale.setScalar(scale);}); raycaster.setFromCamera(pointer,camera); const hits=raycaster.intersectObjects(spheres); if(hits.length){const obj=hits[0].object; if(hovered!==obj){ if(hovered){hovered.scale.divideScalar(1.35);} hovered=obj; hovered.scale.multiplyScalar(1.35);} if(hovered){ tooltip.textContent=hovered.userData.skill.name; tooltip.style.left=(pointer.x*0.5+0.5)*canvas.clientWidth+'px'; tooltip.style.top=((-pointer.y*0.5+0.5)*canvas.clientHeight)+'px'; tooltip.style.opacity='1'; }} else { if(hovered){hovered.scale.divideScalar(1.35); hovered=null;} tooltip.style.opacity='0'; } renderer.render(scene,camera); if(frames===2){console.info('[skills-sphere] started render', {size:[canvas.clientWidth,canvas.clientHeight], spheres:spheres.length});} }
+    animate();
+    window.addEventListener('resize',()=>{resize();});
+    canvas.addEventListener('webglcontextlost',e=>{e.preventDefault(); stopped=true; showLoadError(canvas,'WebGL context lost');});
+  } catch(err){
+    console.error('[skills-sphere] fatal init error', err);
+    try{showLoadError(canvas,'3D init error');}catch(_){/* ignore */}
   }
-  resize();
-  const group=new THREE.Group(); scene.add(group);
-  const N=skills.length; const radius=560; const spheres=[];
-  // Build sphere
-  for(let i=0;i<N;i++){
-    const s=skills[i];
-    const phi=Math.acos(-1 + (2*i)/N);
-    const theta=Math.sqrt(N*Math.PI)*phi;
-    const x=radius*Math.sin(phi)*Math.cos(theta);
-    const y=radius*Math.sin(phi)*Math.sin(theta);
-    const z=radius*Math.cos(phi);
-    const r=6 + s.importance*3;
-    const geo=new THREE.SphereGeometry(r,20,20);
-    const mat=new THREE.MeshBasicMaterial({color:colors[s.category]||0xffffff});
-    const mesh=new THREE.Mesh(geo,mat);
-    mesh.position.set(x,y,z);
-    mesh.userData.skill=s;
-    group.add(mesh); spheres.push(mesh);
-  }
-  if(!spheres.length){console.error('[skills-sphere] no spheres created'); showLoadError(canvas,'No skills to render');}
-  // Starfield
-  const starGeo=new THREE.BufferGeometry(); const starCount=700; const pos=new Float32Array(starCount*3);
-  for(let i=0;i<starCount;i++){const R=1500*Math.random(); const th=Math.random()*Math.PI*2; const ph=Math.acos(2*Math.random()-1); pos[i*3]=R*Math.sin(ph)*Math.cos(th); pos[i*3+1]=R*Math.sin(ph)*Math.sin(th); pos[i*3+2]=R*Math.cos(ph);} starGeo.setAttribute('position',new THREE.BufferAttribute(pos,3)); scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0x1a3b55,size:2,opacity:.32,transparent:true})));
-  const raycaster=new THREE.Raycaster(); const pointer=new THREE.Vector2(-100,-100); let hovered=null;
-  const tooltip=document.createElement('div'); Object.assign(tooltip.style,{position:'absolute',pointerEvents:'none',fontSize:'11px',padding:'4px 6px',background:'rgba(10,15,22,.9)',border:'1px solid #1d2c38',borderRadius:'4px',color:'#e8f4fa',letterSpacing:'0.5px',transform:'translate(-50%,-140%)',whiteSpace:'nowrap',opacity:'0',transition:'opacity .18s'}); canvas.parentElement.style.position='relative'; canvas.parentElement.appendChild(tooltip);
-  canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect(); pointer.x=((e.clientX-r.left)/r.width)*2-1; pointer.y=-((e.clientY-r.top)/r.height)*2+1;});
-  canvas.addEventListener('mouseleave',()=>{pointer.x=-100; pointer.y=-100; if(hovered){hovered.scale.divideScalar(1.35); hovered=null; tooltip.style.opacity='0';}});
-  let t=0; let frames=0;
-  function animate(){
-    requestAnimationFrame(animate);
-    t+=0.0012; frames++;
-    group.rotation.y+=0.0009; group.rotation.x+=0.0003;
-    const pulse = Math.sin(t*2);
-    spheres.forEach(m=>{const imp=m.userData.skill.importance; const scale=1 + pulse*0.035; m.scale.setScalar(scale);});
-    raycaster.setFromCamera(pointer,camera);
-    const hits=raycaster.intersectObjects(spheres);
-    if(hits.length){const obj=hits[0].object; if(hovered!==obj){ if(hovered){hovered.scale.divideScalar(1.35);} hovered=obj; hovered.scale.multiplyScalar(1.35);} if(hovered){ tooltip.textContent=hovered.userData.skill.name; tooltip.style.left=(pointer.x*0.5+0.5)*canvas.clientWidth+'px'; tooltip.style.top=(( -pointer.y*0.5+0.5)*canvas.clientHeight)+'px'; tooltip.style.opacity='1'; }} else { if(hovered){hovered.scale.divideScalar(1.35); hovered=null;} tooltip.style.opacity='0'; }
-    renderer.render(scene,camera);
-    if(frames===2){console.info('[skills-sphere] started render', {size:[canvas.clientWidth,canvas.clientHeight], spheres:spheres.length});}
-  }
-  animate();
-  window.addEventListener('resize',()=>{resize();});
 };
 
 function showLoadError(canvas,msg){
