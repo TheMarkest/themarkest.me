@@ -11,6 +11,13 @@ export interface Achievement {
 
 export const achievementsData: Achievement[] = [
   {
+    id: 'indriveSparkLab',
+    titleKey: 'achievements.indriveSparkLab.title',
+    descriptionKey: 'achievements.indriveSparkLab.description',
+    year: '2024',
+    iconName: 'Wrench',
+  },
+  {
     id: 'lecturerSPbSUE',
     titleKey: 'achievements.lecturerSPbSUE.title',
     descriptionKey: 'achievements.lecturerSPbSUE.description',
