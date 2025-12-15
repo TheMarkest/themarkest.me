@@ -1,4 +1,3 @@
-
 // src/components/sections/HeroSection.tsx
 "use client";
 
@@ -41,7 +40,6 @@ const HeroSection = () => {
                 <p key={index}>{`// ${role}`}</p>
               ))}
             </div>
-             <p className="font-body text-lg md:text-xl text-foreground mt-6 mb-6">{t('skills.intro')}</p>
           </ScrollAppear>
           <ScrollAppear className="flex justify-center md:justify-end" delay="delay-200">
             <Image
