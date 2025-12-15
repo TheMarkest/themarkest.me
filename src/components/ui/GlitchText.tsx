@@ -35,21 +35,26 @@ const fragmentShader = `
     vec2 uv = vUv;
     vec4 originalColor = texture2D(tDiffuse, uv);
 
+    if (glitchAmount == 0.0) {
+      gl_FragColor = originalColor;
+      return;
+    }
+
     // Digital Glitch
-    float randomVal = random(vec2(trunc(uv.y * 100.0), time));
-    if (randomVal < glitchAmount * 0.1) {
+    float randomVal = random(vec2(trunc(uv.y * 100.0), floor(time * 10.0)));
+    if (randomVal < glitchAmount * 0.15) {
       uv.x += (random(vec2(time, 1.0)) - 0.5) * 0.1 * glitchAmount;
     }
 
     // Scanline displacement
-    float scanline = sin(uv.y * 800.0 * (1.0 + glitchAmount * 0.1)) / 30.0;
+    float scanline = sin(uv.y * 800.0 * (1.0 + glitchAmount * 0.2)) / 30.0;
     scanline *= smoothstep(0.1, 0.0, abs(uv.y - mod(time * 0.1, 1.0))); // moving scanline
     uv.x += scanline * glitchAmount;
     
     // RGB Shift
-    vec2 R_uv = vec2(uv.x + (random(vec2(time, 2.0)) - 0.5) * 0.01 * glitchAmount, uv.y);
+    vec2 R_uv = vec2(uv.x + (random(vec2(time * 2.0, 2.0)) - 0.5) * 0.02 * glitchAmount, uv.y);
     vec2 G_uv = uv;
-    vec2 B_uv = vec2(uv.x - (random(vec2(time, 4.0)) - 0.5) * 0.01 * glitchAmount, uv.y);
+    vec2 B_uv = vec2(uv.x - (random(vec2(time * 2.0, 4.0)) - 0.5) * 0.02 * glitchAmount, uv.y);
 
     float r = texture2D(tDiffuse, R_uv).r;
     float g = texture2D(tDiffuse, G_uv).g;
@@ -148,9 +153,9 @@ const GlitchText: React.FC<GlitchTextProps> = ({ text, className, as: Component 
       shaderStuff.uniforms.time.value = clock.getElapsedTime();
       
       // Control glitch intensity
-      let glitchValue = Math.sin(clock.getElapsedTime() * 2.0) * Math.cos(clock.getElapsedTime() * 15.0);
-      glitchValue = THREE.MathUtils.smoothstep(glitchValue, 0.7, 1.0);
-      glitchValue *= Math.pow(Math.random(), 5.0) * 0.2; // Add random bursts
+      let glitchValue = Math.sin(clock.getElapsedTime() * 0.5) * Math.cos(clock.getElapsedTime() * 5.0);
+      glitchValue = THREE.MathUtils.smoothstep(glitchValue, 0.8, 1.0);
+      glitchValue *= Math.pow(Math.random(), 8.0) * 0.5; // Add random bursts
       shaderStuff.uniforms.glitchAmount.value = glitchValue;
 
       renderer.render(scene, camera);
@@ -182,11 +187,8 @@ const GlitchText: React.FC<GlitchTextProps> = ({ text, className, as: Component 
     return cleanup;
   }, [text, locale, shaderStuff]);
 
-  // The component itself is just a sized div that will host the canvas.
-  // The 'glitch' class is kept for semantic purposes but does not apply CSS animations.
   return (
     <Component ref={mountRef} className={cn('glitch', className)} data-text={text}>
-      {/* Fallback for no-JS or error */}
       <span style={{ visibility: 'hidden' }}>{text}</span>
     </Component>
   );
