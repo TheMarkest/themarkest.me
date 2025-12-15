@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Space_Grotesk, Handjet } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -19,6 +19,11 @@ const fontSpaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space-grotesk',
   weight: ['300', '400', '500', '700'],
+});
+
+const fontHandjet = Handjet({
+  subsets: ['latin'],
+  variable: '--font-handjet',
 });
 
 export const metadata: Metadata = {
@@ -58,7 +63,8 @@ export default function RootLayout({
         className={cn(
           'font-body antialiased',
           fontInter.variable,
-          fontSpaceGrotesk.variable
+          fontSpaceGrotesk.variable,
+          fontHandjet.variable
         )}
       >
         <LanguageProvider>

@@ -21,7 +21,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['Inter', 'sans-serif'],
-        headline: ['Space Grotesk', 'sans-serif'],
+        headline: ['Handjet', 'sans-serif'],
         code: ['Space Grotesk', 'monospace'], // Using Space Grotesk for a computerized monospaced feel
       },
       colors: {
