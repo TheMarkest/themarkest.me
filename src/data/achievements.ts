@@ -18,6 +18,13 @@ export const achievementsData: Achievement[] = [
     iconName: 'Wrench',
   },
   {
+    id: 'posDevelopment',
+    titleKey: 'achievements.posDevelopment.title',
+    descriptionKey: 'achievements.posDevelopment.description',
+    year: '2021-2025',
+    iconName: 'Database',
+  },
+  {
     id: 'lecturerSPbSUE',
     titleKey: 'achievements.lecturerSPbSUE.title',
     descriptionKey: 'achievements.lecturerSPbSUE.description',
