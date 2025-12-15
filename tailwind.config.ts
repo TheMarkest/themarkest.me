@@ -98,50 +98,10 @@ export default {
             height: '0',
           },
         },
-        'flicker-primary-text-shadow': {
-          '0%, 100%': {
-            textShadow: '0 0 2px hsl(var(--primary)), 0 0 5px hsl(var(--primary)), 0 0 8px hsl(var(--primary) / 0.7)',
-            opacity: '1',
-          },
-          '50%': {
-            textShadow: '0 0 1px hsl(var(--primary)), 0 0 3px hsl(var(--primary) / 0.5)',
-            opacity: '0.85',
-          },
-        },
-        'flicker-accent-text-shadow': {
-          '0%, 100%': {
-            textShadow: '0 0 2px hsl(var(--accent)), 0 0 5px hsl(var(--accent)), 0 0 8px hsl(var(--accent) / 0.7)',
-            opacity: '1',
-          },
-          '50%': {
-            textShadow: '0 0 1px hsl(var(--accent)), 0 0 3px hsl(var(--accent) / 0.5)',
-            opacity: '0.85',
-          },
-        },
-        'flicker-primary-border-shadow': {
-           '0%, 100%': {
-            boxShadow: '0 0 3px hsl(var(--primary)), 0 0 6px hsl(var(--primary)), inset 0 0 2px hsl(var(--primary))',
-          },
-          '50%': {
-            boxShadow: '0 0 1px hsl(var(--primary)), 0 0 2px hsl(var(--primary) / 0.7), inset 0 0 1px hsl(var(--primary) / 0.7)',
-          },
-        },
-        'flicker-accent-border-shadow': {
-          '0%, 100%': {
-            boxShadow: '0 0 3px hsl(var(--accent)), 0 0 6px hsl(var(--accent)), inset 0 0 2px hsl(var(--accent))',
-          },
-          '50%': {
-            boxShadow: '0 0 1px hsl(var(--accent)), 0 0 2px hsl(var(--accent) / 0.7), inset 0 0 1px hsl(var(--accent) / 0.7)',
-          },
-        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'flicker-text-primary': 'flicker-primary-text-shadow 1.5s infinite alternate',
-        'flicker-text-accent': 'flicker-accent-text-shadow 1.5s infinite alternate',
-        'flicker-border-primary': 'flicker-primary-border-shadow 2s infinite alternate',
-        'flicker-border-accent': 'flicker-accent-border-shadow 2s infinite alternate',
       },
     },
   },

@@ -100,12 +100,6 @@
   .text-balance {
     text-wrap: balance;
   }
-  .flicker-text-primary {
-    animation: flicker-primary-text-shadow 1.5s infinite alternate;
-  }
-  .flicker-text-accent {
-    animation: flicker-accent-text-shadow 1.5s infinite alternate;
-  }
   .flicker-border-primary {
     border-color: transparent !important;
     animation: flicker-primary-border-shadow 3s infinite alternate;
@@ -117,29 +111,86 @@
   .chamfer-tr {
     clip-path: polygon(0% 0%, calc(100% - 2.5rem) 0%, 100% 2.5rem, 100% 100%, 0% 100%);
   }
+
+  /* New Glitch Effect */
+  .glitch {
+    position: relative;
+    /* The text-shadow provides a subtle glow even when not glitching */
+    text-shadow: 0 0 2px hsl(var(--primary) / 0.5);
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(var(--background)); /* Match background to hide text outside clip-path */
+    overflow: hidden;
+  }
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 hsl(var(--primary));
+    clip-path: inset(50% 0 50% 0); /* Start clipped to avoid initial flash */
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  }
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 hsl(var(--accent));
+    clip-path: inset(50% 0 50% 0); /* Start clipped */
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  }
 }
 
-@keyframes flicker-primary-text-shadow {
-  0%, 100% {
-    text-shadow: 0 0 2px hsl(var(--primary)), 0 0 5px hsl(var(--primary)), 0 0 8px hsl(var(--primary) / 0.7);
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 1px hsl(var(--primary)), 0 0 3px hsl(var(--primary) / 0.5);
-    opacity: 0.85;
-  }
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(40% 0 60% 0); }
+  5% { clip-path: inset(10% 0 85% 0); }
+  10% { clip-path: inset(90% 0 5% 0); }
+  15% { clip-path: inset(30% 0 70% 0); }
+  20% { clip-path: inset(55% 0 40% 0); }
+  25% { clip-path: inset(15% 0 80% 0); }
+  30% { clip-path: inset(75% 0 20% 0); }
+  35% { clip-path: inset(45% 0 50% 0); }
+  40% { clip-path: inset(95% 0 2% 0); }
+  45% { clip-path: inset(25% 0 70% 0); }
+  50% { clip-path: inset(60% 0 35% 0); }
+  55% { clip-path: inset(5% 0 90% 0); }
+  60% { clip-path: inset(80% 0 15% 0); }
+  65% { clip-path: inset(35% 0 60% 0); }
+  70% { clip-path: inset(65% 0 30% 0); }
+  75% { clip-path: inset(20% 0 75% 0); }
+  80% { clip-path: inset(85% 0 10% 0); }
+  85% { clip-path: inset(50% 0 45% 0); }
+  90% { clip-path: inset(70% 0 25% 0); }
+  95% { clip-path: inset(2% 0 95% 0); }
+  100% { clip-path: inset(60% 0 40% 0); }
 }
 
-@keyframes flicker-accent-text-shadow {
-  0%, 100% {
-    text-shadow: 0 0 2px hsl(var(--accent)), 0 0 5px hsl(var(--accent)), 0 0 8px hsl(var(--accent) / 0.7);
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 1px hsl(var(--accent)), 0 0 3px hsl(var(--accent) / 0.5);
-    opacity: 0.85;
-  }
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(95% 0 2% 0); }
+  5% { clip-path: inset(40% 0 55% 0); }
+  10% { clip-path: inset(20% 0 75% 0); }
+  15% { clip-path: inset(80% 0 10% 0); }
+  20% { clip-path: inset(10% 0 85% 0); }
+  25% { clip-path: inset(65% 0 30% 0); }
+  30% { clip-path: inset(45% 0 50% 0); }
+  35% { clip-path: inset(90% 0 5% 0); }
+  40% { clip-path: inset(30% 0 65% 0); }
+  45% { clip-path: inset(70% 0 25% 0); }
+  50% { clip-path: inset(15% 0 80% 0); }
+  55% { clip-path: inset(55% 0 40% 0); }
+  60% { clip-path: inset(5% 0 90% 0); }
+  65% { clip-path: inset(75% 0 20% 0); }
+  70% { clip-path: inset(25% 0 70% 0); }
+  75% { clip-path: inset(60% 0 35% 0); }
+  80% { clip-path: inset(85% 0 10% 0); }
+  85% { clip-path: inset(35% 0 60% 0); }
+  90% { clip-path: inset(50% 0 45% 0); }
+  95% { clip-path: inset(10% 0 80% 0); }
+  100% { clip-path: inset(70% 0 20% 0); }
 }
+
 
 @keyframes flicker-primary-border-shadow {
   0%, 100% {
@@ -187,9 +238,4 @@
   opacity: 1;
   transform: scale(1) translateY(0);
   filter: blur(0px) grayscale(0%);
-}
-
-.glitch-container canvas {
-  width: 100% !important;
-  height: 100% !important;
 }
