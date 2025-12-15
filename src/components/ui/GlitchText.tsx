@@ -52,7 +52,7 @@ const fragmentShader = `
     uv.x += scanline * glitchAmount;
     
     // RGB Shift
-    vec2-Spezial R_uv = vec2(uv.x + (random(vec2(time, 2.0)) - 0.5) * 0.01 * glitchAmount, uv.y);
+    vec2 R_uv = vec2(uv.x + (random(vec2(time, 2.0)) - 0.5) * 0.01 * glitchAmount, uv.y);
     vec2 G_uv = uv;
     vec2 B_uv = vec2(uv.x - (random(vec2(time, 4.0)) - 0.5) * 0.01 * glitchAmount, uv.y);
 
