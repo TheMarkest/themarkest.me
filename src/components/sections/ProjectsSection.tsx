@@ -19,17 +19,6 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
   return (
     <ScrollAppear delay={`delay-${index * 150}`}>
       <Card className="h-full flex flex-col bg-card/80 backdrop-blur-sm flicker-border-primary overflow-hidden group">
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            src={project.image}
-            alt={projectTitle}
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-105"
-            data-ai-hint={project.dataAiHint || "technology project"}
-          />
-          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
-        </div>
         <CardHeader>
           <CardTitle className="font-headline text-2xl text-primary group-hover:text-primary/80 transition-colors">
             {projectTitle}
