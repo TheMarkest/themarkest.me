@@ -21,7 +21,7 @@ export const achievementsData: Achievement[] = [
     id: 'posDevelopment',
     titleKey: 'achievements.posDevelopment.title',
     descriptionKey: 'achievements.posDevelopment.description',
-    year: '2021-2025',
+    year: '2021 - Present',
     iconName: 'Database',
   },
   {
