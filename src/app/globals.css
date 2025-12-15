@@ -137,7 +137,7 @@
     transform-origin: center center;
     width: 100%;
     z-index: -1;
-    animation: glitch-color 300ms cubic-bezier(.25, .46, .45, .94) infinite;
+    animation: glitch-color 500ms cubic-bezier(.25, .46, .45, .94) infinite;
     animation-delay: var(--anim-color-delay, 0s);
   }
   
@@ -152,7 +152,7 @@
   
   .glitch__color--green {
     color: #00FF0B; /* Keeping a specific neon green */
-    animation-duration: 200ms;
+    animation-duration: 350ms;
   }
 
   .glitch__line {
@@ -163,12 +163,12 @@
     position: absolute;
     width: 100%;
     z-index: 3; /* Above main text */
-    animation: glitch-line 2s linear infinite;
+    animation: glitch-line 3s linear infinite;
     animation-delay: var(--anim-line-delay, 0s);
   }
 
   .glitch__line--second {
-     animation-duration: 1s;
+     animation-duration: 2s;
   }
 
 }
@@ -227,16 +227,16 @@
     transform: translate(0);
   }
   20% {
-    transform: translate(-3px, 3px);
+    transform: translate(-1px, 1px);
   }
   40% {
-    transform: translate(-3px, -3px);
+    transform: translate(-1px, -1px);
   }
   60% {
-    transform: translate(3px, 3px);
+    transform: translate(1px, 1px);
   }
   80% {
-    transform: translate(3px, -3px);
+    transform: translate(1px, -1px);
   }
   100% {
     transform: translate(0);
@@ -252,11 +252,11 @@
     filter: blur(0);
   }
   50% {
-    transform: skew(-5deg, 0deg);
-    filter: blur(2px);
+    transform: skew(-2deg, 0deg);
+    filter: blur(1px);
   }
   52% {
-    transform: skew(5deg, 0deg);
+    transform: skew(2deg, 0deg);
   }
   54% {
     transform: skew(0deg, 0deg);
