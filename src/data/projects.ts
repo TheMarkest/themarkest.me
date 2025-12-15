@@ -3,11 +3,10 @@ export interface Project {
   id: string;
   titleKey: string; // For localization
   descriptionKey: string; // For localization
-  image: string; // URL to project image
   tags: string[];
   liveLink?: string;
   sourceLink?: string;
-  year: number;
+  year: number | string; // Allow string for ranges or multiple dates
   client?: string; // Optional client name
   dataAiHint?: string; // for placeholder images
 }
@@ -15,45 +14,74 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: 'go-vanlife',
-    titleKey: 'projectGoVanlife.title',
-    descriptionKey: 'projectGoVanlife.description',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'van travel app',
-    tags: ['Mobile App', 'React Native', 'Firebase', 'Community'],
-    liveLink: 'https://go-vanlife.ru/',
+    titleKey: 'project.goVanlife.title',
+    descriptionKey: 'project.goVanlife.description',
+    tags: ['React Native', 'Firebase', 'Mobile', 'Community'],
     year: 2022,
-    client: 'Such.Digital',
+    client: 'self',
   },
   {
     id: 'ar-hunter',
-    titleKey: 'projectArHunter.title',
-    descriptionKey: 'projectArHunter.description',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'augmented reality game',
-    tags: ['AR', 'Unity', 'Mobile Game', 'CTO'],
-    liveLink: 'http://arhunter.org/',
+    titleKey: 'project.arHunter.title',
+    descriptionKey: 'project.arHunter.description',
+    tags: ['Unity', 'AR', 'Games', 'Mobile AR SDK'],
     year: 2021,
+    client: 'AR Hunter',
   },
   {
-    id: 'data-suite',
-    titleKey: 'projectDataSuite.title',
-    descriptionKey: 'projectDataSuite.description',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'motion capture suit',
-    tags: ['Wearables', 'IoT', 'Motion Tracking', 'XPRIZE'],
-    liveLink: 'https://www.xprize.org/prizes/avatar',
+    id: 'datasuite-mts',
+    titleKey: 'project.datasuiteMTS.title',
+    descriptionKey: 'project.datasuiteMTS.description',
+    tags: ['Wearables', 'Motion Tracking', 'IoT', 'XPRIZE'],
     year: 2019,
+    client: 'DataSuite',
   },
   {
-    id: 'project-alpha', // Kept from original for variety, can be replaced
-    titleKey: 'projectAlpha.title',
-    descriptionKey: 'projectAlpha.description',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'futuristic interface',
-    tags: ['Next.js', 'TypeScript', 'Firebase', 'AI Integration'],
-    liveLink: '#',
-    sourceLink: '#',
-    year: 2024,
-    client: 'Stark Industries (Demo)',
+    id: 'datasuite-cyber-suit',
+    titleKey: 'project.datasuiteCyberSuit.title',
+    descriptionKey: 'project.datasuiteCyberSuit.description',
+    tags: ['HCI', 'Wearables', 'Experimental Tech', 'Motion Capture'],
+    year: 'Exp.',
+    client: 'DataSuite',
+  },
+  {
+    id: '3d-printed-dress',
+    titleKey: 'project.3dPrintedDress.title',
+    descriptionKey: 'project.3dPrintedDress.description',
+    tags: ['3D Printing', 'Fashion Tech', 'Digital Art', 'Wearables'],
+    year: 2017,
+    client: 'Personal Project',
+  },
+  {
+    id: 'xprize-finalist',
+    titleKey: 'project.xprizeFinalist.title',
+    descriptionKey: 'project.xprizeFinalist.description',
+    tags: ['Robotics', 'International Competitions', 'Leadership'],
+    year: '2019-2021',
+    client: 'ANA Avatar XPRIZE',
+  },
+  {
+    id: 'olimp',
+    titleKey: 'project.olimp.title',
+    descriptionKey: 'project.olimp.description',
+    tags: ['Community', 'EdTech', 'Public Installations'],
+    year: '2017-2020',
+    client: 'OLIMP',
+  },
+  {
+    id: 'mlh-hackathons',
+    titleKey: 'project.mlhHackathons.title',
+    descriptionKey: 'project.mlhHackathons.description',
+    tags: ['Hackathons', 'Community', 'Education', 'MLH'],
+    year: '2016-2020',
+    client: 'Major League Hacking',
+  },
+  {
+    id: 'taxi-auction-service',
+    titleKey: 'project.taxiAuctionService.title',
+    descriptionKey: 'project.taxiAuctionService.description',
+    tags: ['Urban Tech', 'Marketplaces', 'Real-time'],
+    year: 2022,
+    client: 'Moscow Market',
   },
 ];
