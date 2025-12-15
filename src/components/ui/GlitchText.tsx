@@ -32,11 +32,6 @@ const fragmentShader = `
   }
 
   void main() {
-    if (glitchAmount == 0.0) {
-      gl_FragColor = texture2D(tDiffuse, vUv);
-      return;
-    }
-
     vec2 uv = vUv;
     vec4 originalColor = texture2D(tDiffuse, uv);
 
