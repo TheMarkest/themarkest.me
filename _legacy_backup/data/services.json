@@ -1,0 +1,76 @@
+{
+  "services": [
+    {
+      "id": "itDevelopment",
+      "icon": "💻",
+      "title": {
+        "ru": "Разработка IT-продуктов",
+        "en": "IT Product Development"
+      },
+      "description": {
+        "ru": "Моя команда может разработать проект любой сложности и направленности и сопровождать его на всём протяжении жизненного цикла",
+        "en": "My team can develop a project of any complexity and direction and support it throughout the entire life cycle"
+      }
+    },
+    {
+      "id": "speaker",
+      "icon": "🎤",
+      "title": {
+        "ru": "Спикер",
+        "en": "Speaker"
+      },
+      "description": {
+        "ru": "Имею широкий опыт выступления на мероприятиях и ведения образовательных программ",
+        "en": "I have extensive experience speaking at events and conducting educational programs"
+      }
+    },
+    {
+      "id": "startupConsulting",
+      "icon": "🚀",
+      "title": {
+        "ru": "Консультирование стартапов",
+        "en": "Startup Consulting"
+      },
+      "description": {
+        "ru": "Люблю интересные и нестандартные проекты на стыке различных технологических сфер. Могу помочь в разработке концепции продукта на базовых этапах, так и выступить в роли CTO",
+        "en": "I love interesting and non-standard projects at the intersection of various technological fields. I can help develop a product concept at basic stages or act as a CTO"
+      }
+    },
+    {
+      "id": "mentor",
+      "icon": "🎓",
+      "title": {
+        "ru": "Ментор",
+        "en": "Mentor"
+      },
+      "description": {
+        "ru": "Могу помочь начинающим специалистам и командам определить свой путь в IT сфере и сделать первые шаги",
+        "en": "I can help beginning specialists and teams find their path in the IT field and take their first steps"
+      }
+    },
+    {
+      "id": "eventOrganization",
+      "icon": "🎪",
+      "title": {
+        "ru": "Организация IT мероприятий",
+        "en": "IT Event Organization"
+      },
+      "description": {
+        "ru": "В течении 7 лет участвовал в организации множества хакатонов, фестивалей и конференций",
+        "en": "Over 7 years, participated in organizing numerous hackathons, festivals and conferences"
+      }
+    },
+    {
+      "id": "rapidPrototyping",
+      "icon": "⚡",
+      "title": {
+        "ru": "Быстрое прототипирование",
+        "en": "Rapid Prototyping"
+      },
+      "description": {
+        "ru": "Опыт приобретенный на хакатонах и при создании собственных проектов позволяет мне находить самые простые и доступные способы прототипирования комплексных систем, устройств и иных проектов",
+        "en": "Experience gained at hackathons and when creating my own projects allows me to find the simplest and most accessible ways to prototype complex systems, devices and other projects"
+      }
+    }
+  ]
+}
