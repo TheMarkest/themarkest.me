@@ -1,70 +1,82 @@
-// src/components/sections/HeroSection.tsx
 "use client";
 
-import Image from 'next/image';
-import { useLanguage } from '@/hooks/useLanguage';
-import { Button } from '@/components/ui/button';
-import SkillCloud from '@/components/ui/SkillCloud';
-import GlitchText from '@/components/ui/GlitchText';
-import ScrollAppear from '@/components/ui/ScrollAppear';
-import { ArrowRight } from 'lucide-react';
+import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import { Link } from "@/i18n/routing";
 
-const HeroSection = () => {
-  const { t } = useLanguage();
-
-  const roles = [
-    t('hero.role1'),
-    t('hero.role2'),
-    t('hero.role3'),
-    t('hero.role4'),
-    t('hero.role5'),
-    t('hero.role6'),
-  ];
+export default function HeroSection() {
+  const t = useTranslations("hero");
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-12 md:py-24">
-      {/* SkillCloud as background */}
-      <SkillCloud />
-      
-      {/* Overlay to ensure text readability over the skill cloud */}
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-sm z-0"></div>
+    <section className="noise-overlay relative flex min-h-screen items-center justify-center overflow-hidden">
+      {/* Grid background */}
+      <div className="grid-pattern pointer-events-none absolute inset-0 opacity-30" />
 
-      <div className="container z-10 relative"> {/* Ensure content is above the background and overlay */}
-        <div className="grid md:grid-cols-2 gap-8 items-center mb-12 md:mb-16">
-          <ScrollAppear className="text-center md:text-left">
-            <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl mb-4">
-              <GlitchText text={t('hero.name')} className="text-primary" />
-            </h1>
-            <div className="font-code text-md md:text-lg text-muted-foreground space-y-1">
-              {roles.map((role, index) => (
-                <p key={index}>{`// ${role}`}</p>
-              ))}
-            </div>
-          </ScrollAppear>
-          <ScrollAppear className="flex justify-center md:justify-end" delay="delay-200">
-            <Image
-              src="https://optim.tildacdn.pub/tild6463-3331-4732-a266-336365336462/-/format/webp/144-DSC07979.jpg"
-              alt={t('hero.name')}
-              width={400}
-              height={400}
-              className="rounded-lg shadow-xl flicker-border-accent object-cover aspect-square"
-              data-ai-hint="portrait man"
-              priority
-            />
-          </ScrollAppear>
-        </div>
-        
-        {/* CTA Button - SkillCloud intro text is now part of the main text block */}
-        <ScrollAppear delay="delay-600" className="text-center">
-          <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground group font-code text-lg px-8 py-6 flicker-border-accent" asChild>
-            <a href="#projects">
-              {t('hero.cta')} <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
-        </ScrollAppear>
+      {/* Gradient orbs */}
+      <div className="pointer-events-none absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-[var(--color-accent)] opacity-[0.04] blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-[var(--color-signal)] opacity-[0.04] blur-[150px]" />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        {/* Status line */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] px-4 py-2"
+        >
+          <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
+          <span className="font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-secondary)]">
+            BUILDING THE FUTURE
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-[family-name:var(--font-display)] text-5xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl"
+        >
+          <span className="text-gradient-accent">{t("headline")}</span>
+        </motion.h1>
+
+        {/* Subheadline */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-8 max-w-2xl text-lg text-[var(--color-text-secondary)] md:text-xl"
+        >
+          {t("subheadline")}
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-4"
+        >
+          <Link
+            href="/projects"
+            className="group relative inline-flex items-center gap-2 rounded-[var(--radius-md)] bg-[var(--color-accent)] px-8 py-3.5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-bg)] transition-all duration-[var(--duration-normal)] hover:shadow-[0_0_30px_var(--color-glow-accent)]"
+          >
+            {t("cta.projects")}
+            <span className="transition-transform duration-[var(--duration-normal)] group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+          <Link
+            href="/collaboration"
+            className="inline-flex items-center gap-2 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] px-8 py-3.5 font-[family-name:var(--font-display)] text-sm font-semibold text-[var(--color-text)] transition-all duration-[var(--duration-normal)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          >
+            {t("cta.collaborate")}
+          </Link>
+        </motion.div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--color-bg)] to-transparent" />
     </section>
   );
-};
-
-export default HeroSection;
+}

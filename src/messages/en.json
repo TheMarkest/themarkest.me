@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "title": "Mark Bogdanov | TheMarkest",
+    "description": "Serial CTO, engineering bureau founder, and technical creativity advocate"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "collaboration": "Collaboration",
+    "lab": "Bureau",
+    "content": "Content",
+    "shop": "Shop",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Serial CTO & Technical Creator",
+    "subheadline": "Turning complex technologies into products, prototypes, and spectacular projects at the intersection of engineering, design, and showmanship",
+    "cta": {
+      "projects": "View Projects",
+      "collaborate": "Discuss Collaboration",
+      "social": "Social",
+      "shop": "Shop"
+    }
+  },
+  "sections": {
+    "trust": {
+      "title": "Trust"
+    },
+    "positioning": {
+      "title": "Who is Mark",
+      "description": "Engineering bureau founder and serial CTO. Building complex systems at the intersection of hardware and software, launching startups, and making technology spectacular."
+    },
+    "projects": {
+      "title": "Flagship Projects",
+      "viewAll": "All Projects",
+      "viewCase": "View Case"
+    },
+    "capabilities": {
+      "title": "What I Do",
+      "items": {
+        "cto": "CTO / Technical Strategy",
+        "prototyping": "Prototyping / R&D",
+        "systems": "Hardware + Software Systems",
+        "consulting": "Startup Consulting",
+        "creativity": "Technical Creativity",
+        "bureau": "Bureau Execution"
+      }
+    },
+    "ecosystem": {
+      "title": "Content Ecosystem",
+      "description": "Where to follow projects, breakdowns, and behind-the-scenes"
+    },
+    "bureau": {
+      "title": "Engineering Bureau",
+      "description": "Internal team and laboratory scaling capabilities"
+    },
+    "shop": {
+      "title": "Objects & Merch",
+      "description": "Original inventions, merchandise, and limited drops"
+    },
+    "contact": {
+      "title": "Let's Work Together",
+      "description": "Choose your type of engagement",
+      "types": {
+        "partnership": "Partnership",
+        "founder": "Startup / Founder",
+        "bureau": "Bureau Project",
+        "media": "Media / Speaking",
+        "product": "Product / Merch",
+        "general": "General Inquiry"
+      }
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms"
+  },
+  "common": {
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "backToTop": "Back to Top",
+    "switchLang": "RU"
+  }
+}

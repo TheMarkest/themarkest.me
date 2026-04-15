@@ -1,85 +1,58 @@
+import type { Metadata } from "next";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
 
-import type { Metadata } from 'next';
-import { Inter, Space_Grotesk, Handjet } from 'next/font/google';
-import './globals.css';
-import { cn } from '@/lib/utils';
-import { LanguageProvider } from '@/context/LanguageContext';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import { Toaster } from '@/components/ui/toaster';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-import { Suspense } from 'react'; // Added Suspense import
-
-const fontInter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+const fontDisplay = Space_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const fontSpaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  weight: ['300', '400', '500', '700'],
+const fontBody = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-body",
+  display: "swap",
 });
 
-const fontHandjet = Handjet({
-  subsets: ['latin'],
-  variable: '--font-handjet',
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: 'Марк Богданов | TheMarkest',
-  description: 'Марк Богданов - Руководитель IT-проектов, сооснователь itis.team, Such.Digital, DataSuite. Лектор в СПБГЭУ.',
-  keywords: 'Марк Богданов, Mark Bogdanov, IT проекты, разработка, full-stack, CTO, TheMarkest, themarkest.me, портфолио',
-  openGraph: {
-    title: 'Марк Богданов | TheMarkest',
-    description: 'Портфолио Марка Богданова: проекты, компетенции, история.',
-    type: 'website',
-    locale: 'ru_RU',
-    alternateLocale: ['en_US'],
-    url: 'https://themarkest.me', 
-    siteName: 'TheMarkest',
-    images: [ { url: 'https://placehold.co/1200x630.png?text=Mark+Bogdanov', width: 1200, height: 630, alt: 'Mark Bogdanov Portfolio' } ],
+  metadataBase: new URL("https://themarkest.me"),
+  title: {
+    default: "Mark Bogdanov | TheMarkest",
+    template: "%s | TheMarkest",
   },
-  twitter: { 
-    card: 'summary_large_image', 
-    title: 'Марк Богданов | TheMarkest', 
-    description: 'Портфолио Марка Богданова: проекты, компетенции, история.', 
-    images: ['https://placehold.co/1200x630.png?text=Mark+Bogdanov'],
-    url: 'https://themarkest.me'
-  }
+  description:
+    "Serial CTO, engineering bureau founder, and technical creativity advocate. Turning complex technologies into products, prototypes, and spectacular projects.",
+  openGraph: {
+    type: "website",
+    siteName: "TheMarkest",
+    url: "https://themarkest.me",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const gaId = "G-544J956PQ1"; // Directly use the provided Google Analytics ID
-
+}) {
   return (
-    <html lang="ru" className="dark">
-      <head />
+    <html suppressHydrationWarning>
       <body
-        className={cn(
-          'font-body antialiased',
-          fontInter.variable,
-          fontSpaceGrotesk.variable,
-          fontHandjet.variable
-        )}
+        className={`${fontDisplay.variable} ${fontBody.variable} ${fontMono.variable} antialiased`}
       >
-        <LanguageProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
-        </LanguageProvider>
-        {gaId && (
-          <Suspense fallback={null}>
-            <GoogleAnalytics gaId={gaId} />
-          </Suspense>
-        )}
+        {children}
       </body>
     </html>
   );

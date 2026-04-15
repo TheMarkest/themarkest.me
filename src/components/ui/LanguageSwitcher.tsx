@@ -1,30 +1,27 @@
-// src/components/ui/LanguageSwitcher.tsx
 "use client";
 
-import { useLanguage, type Locale } from '@/hooks/useLanguage';
-import { Button } from '@/components/ui/button';
-import { Globe } from 'lucide-react';
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter, usePathname } from "@/i18n/routing";
+import type { Locale } from "@/i18n/config";
 
-const LanguageSwitcher = () => {
-  const { locale, setLocale, t } = useLanguage();
+export default function LanguageSwitcher() {
+  const t = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const toggleLanguage = () => {
-    const newLocale: Locale = locale === 'en' ? 'ru' : 'en';
-    setLocale(newLocale);
+  const switchLocale = () => {
+    const nextLocale: Locale = locale === "ru" ? "en" : "ru";
+    router.replace(pathname, { locale: nextLocale });
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={toggleLanguage}
-      className="flex items-center gap-2 text-foreground hover:text-accent hover:bg-accent/10 font-code"
-      aria-label={`Switch to ${locale === 'en' ? 'Russian' : 'English'}`}
+    <button
+      onClick={switchLocale}
+      className="rounded-[var(--radius-sm)] border border-[var(--color-border-strong)] px-3 py-1.5 font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-secondary)] transition-all duration-[var(--duration-fast)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      aria-label={`Switch to ${locale === "ru" ? "English" : "Russian"}`}
     >
-      <Globe className="h-4 w-4" />
-      <span>{locale === 'en' ? t('language.switch.ru') : t('language.switch.en')}</span>
-    </Button>
+      {t("switchLang")}
+    </button>
   );
-};
-
-export default LanguageSwitcher;
+}

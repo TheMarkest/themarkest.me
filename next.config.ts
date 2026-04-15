@@ -1,34 +1,17 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  // Важно: раскомментируйте строку ниже, если сайт опубликован по адресу themarkest.github.io/themarkest.me/
-  // Если у вас подключен свой домен (themarkest.me), эту строку нужно закомментировать или удалить.
-  basePath: '/themarkest.me',
-  /* config options here */
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'optim.tildacdn.pub',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "**",
       },
     ],
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
