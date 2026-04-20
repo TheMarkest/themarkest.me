@@ -8,12 +8,54 @@
 
 | Агент | Файл | Специализация | Инструменты |
 |-------|-------|--------------|-------------|
-| **Frontend** | `frontend.agent.md` | React-компоненты, страницы, Tailwind, вёрстка | read, edit, search, agent |
-| **3D** | `three-d.agent.md` | Three.js, R3F, WebGL-сцены, шейдеры | read, edit, search |
-| **Animation** | `animation.agent.md` | Framer Motion, GSAP, микро-анимации | read, edit, search |
-| **CMS** | `cms.agent.md` | Payload CMS, контент-модели, API | read, edit, search, execute |
+| **Frontend** | `frontend.agent.md` | React-компоненты, страницы, Tailwind, формы, error boundaries | read, edit, search, agent |
+| **3D** | `three-d.agent.md` | Three.js, R3F, WebGL-сцены, шейдеры, частицы | read, edit, search |
+| **Animation** | `animation.agent.md` | Framer Motion, GSAP, scroll-анимации, микро-взаимодействия | read, edit, search |
+| **CMS** | `cms.agent.md` | Payload CMS, контент-модели, API, seed-данные | read, edit, search, execute |
 | **i18n** | `i18n.agent.md` | Переводы, next-intl, locale routing | read, edit, search |
-| **DevOps** | `devops.agent.md` | Firebase, CI/CD, SEO, производительность | read, edit, search, execute |
+| **DevOps** | `devops.agent.md` | Firebase, CI/CD, SEO, a11y, аналитика, ESLint, env | read, edit, search, execute |
+| **Explore** | *(встроенный)* | Read-only исследование кодовой базы, Q&A | read, search |
+
+### Explore-агент (встроенный)
+Используется orchestrator-ом для быстрого анализа перед планированием:
+- Поиск файлов и зависимостей
+- Чтение кода для понимания контекста
+- Проверка текущего состояния (какие компоненты уже есть, какие переводы заведены)
+- **Не модифицирует файлы** — только читает и отвечает
+
+---
+
+## Матрица маршрутизации задач
+
+> **Как понять, какому агенту отдать задачу?**
+
+| Задача | Основной агент | Помощники | Пример |
+|--------|---------------|-----------|--------|
+| Новая страница | **Frontend** | i18n, Animation, DevOps | «Создать страницу /about» |
+| Новая секция на главной | **Frontend** | i18n, Animation | «Добавить Trust Indicators» |
+| Изменение текстов | **i18n** | — | «Перевести кнопку» |
+| Новый UI-компонент | **Frontend** | i18n (если текст) | «Кнопка с gradient border» |
+| Форма обратной связи | **Frontend** | i18n, DevOps | «Contact form с валидацией» |
+| Error/Loading/NotFound | **Frontend** | i18n | «Добавить error.tsx» |
+| Мобильное меню | **Frontend** | Animation | «Burger-меню для мобильных» |
+| Стили / design tokens | **Frontend** | — | «Добавить новый цвет в тему» |
+| 3D-сцена на hero | **3D** | Frontend, Animation | «Particle cloud фон» |
+| 3D-объект / WebGL | **3D** | — | «Вращающийся логотип» |
+| Enter/Exit анимация | **Animation** | — | «Fade-up при скролле» |
+| Сложный таймлайн GSAP | **Animation** | — | «Parallax-секция» |
+| Page transitions | **Animation** | Frontend | «Переходы между страницами» |
+| Коллекция в CMS | **CMS** | Frontend (типы) | «Модель Project» |
+| Контент из CMS на фронт | **CMS** + **Frontend** | i18n | «Список проектов из Payload» |
+| Медиа/файлы | **CMS** | DevOps (storage) | «Загрузка изображений» |
+| SEO: meta, OG, sitemap | **DevOps** | i18n (alt-locale) | «Мета-теги для каждой страницы» |
+| robots.txt, sitemap.xml | **DevOps** | — | «SEO-файлы» |
+| Firebase deploy/config | **DevOps** | — | «Обновить apphosting.yaml» |
+| Performance-аудит | **DevOps** | — | «Lighthouse check» |
+| Аналитика | **DevOps** | — | «Подключить Firebase Analytics» |
+| ESLint / линтинг | **DevOps** | — | «Настроить ESLint» |
+| Env-переменные | **DevOps** | — | «.env.example» |
+| Безопасность / CSP | **DevOps** | — | «Security headers» |
+| Исследовать код | **Explore** | — | «Что использует Hero?» |
 
 ## Принципы оркестрации
 
@@ -21,9 +63,11 @@
 Каждый агент делает ТОЛЬКО то, что в его домене. Если задача пересекает домены — orchestrator разбивает её и раздаёт по частям.
 
 **Пример:** «Добавить секцию Trust Indicators на главную»
-1. **i18n** → создаёт ключи переводов в `ru.json` + `en.json`
-2. **Frontend** → строит компонент `TrustSection.tsx` с `useTranslations()`
-3. **Animation** → добавляет анимации появления (fade-up, stagger)
+1. **Explore** → проверить, есть ли уже подобная секция и какие namespace используются
+2. **i18n** → создаёт ключи переводов в `ru.json` + `en.json`
+3. **Frontend** → строит компонент `TrustSection.tsx` с `useTranslations()`
+4. **Animation** → добавляет анимации появления (fade-up, stagger)
+5. **DevOps** → `npm run build` + `npm run typecheck`
 
 ### 2. Порядок выполнения
 При комплексных задачах соблюдать зависимости:
@@ -123,11 +167,59 @@ src/
 └── payload/                           ← Payload CMS (collections, config)
 
 .github/
-├── agents/                            ← Файлы субагентов
+├── agents/                            ← Файлы субагентов (.agent.md)
 ├── copilot-instructions.md            ← Общие инструкции проекта
-└── workflows/                         ← CI/CD (Firebase deploy)
+└── AGENT_TEAM.md                      ← Этот документ
 ```
 
 ## Обновление этого документа
 
 При изменении стека, добавлении нового агента или изменении конвенций — обновлять этот файл и `copilot-instructions.md` синхронно.
+
+---
+
+## Разрешение неоднозначностей
+
+### Пограничные случаи: кому отдать?
+
+| Ситуация | Решение |
+|----------|---------|
+| Компонент с анимацией | **Frontend** создаёт, **Animation** анимирует. Если анимация тривиальная (opacity+y), Frontend делает сам |
+| 3D-сцена с UI-оверлеем | **3D** — Canvas/сцена. **Frontend** — HTML-оверлей поверх. Не мешать слои |
+| Текст из CMS + переводы | Динамический контент → **CMS**. Статические лейблы вокруг → **i18n** |
+| SEO meta-теги для страницы | **DevOps** задаёт паттерн (`generateMetadata`). **i18n** поставляет локализованные значения |
+| Новая зависимость нужна | Orchestrator решает. Агент обосновывает, orchestrator утверждает |
+| Баг в существующем коде | Агент домена, к которому относится файл (определить по пути в `src/`) |
+
+### Когда НЕ нужен субагент
+- Единичная мелкая правка (одна строка) → orchestrator сам
+- Ответ на вопрос о коде → **Explore** или orchestrator
+- Правка конфигов верхнего уровня (`package.json`, `tsconfig.json`) → orchestrator или **DevOps**
+
+## Текущий статус проекта (обновлять по мере разработки)
+
+### Готово ✅
+- Базовая структура Next.js 15 + App Router
+- Tailwind CSS v4 с design system в globals.css
+- next-intl: i18n routing, middleware, переводы (ru + en)
+- Главная: HeroSection, ProjectsPreview, CapabilitiesSection, ContactCTA
+- Header + Footer + LanguageSwitcher
+- Firebase App Hosting конфиг
+- Все маршруты-заглушки (about, projects, collaboration, lab, content, shop, contact, privacy, terms)
+
+### В процессе 🔄
+- *(ничего)*
+
+### Предстоит 📋
+- Интеграция Payload CMS (коллекции, admin, API)
+- 3D hero-сцена (Three.js)
+- Доработка страниц (about, projects, collaboration, lab, content, shop)
+- Секции главной: Trust Indicators, Positioning, Ecosystem, Bureau, Shop teaser
+- Формы обратной связи (contact page)
+- Мобильная навигация (burger-меню)
+- Error boundaries + loading states
+- robots.txt, sitemap.xml
+- SEO: per-page metadata в обоих локалях
+- ESLint конфигурация
+- Аналитика (Firebase Analytics)
+- Первый деплой на Firebase App Hosting

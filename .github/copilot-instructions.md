@@ -25,11 +25,11 @@
 
 ## Design System
 Все переменные определены в `src/app/globals.css` через `@theme`:
-- **BG:** `#0a0a0f` (глубокий тёмный)
-- **Accent:** `#00e5ff` (cyan)
-- **Signal:** `#ff3366` (красно-розовый)
-- **Surface:** `#12121a`, `#1a1a2e`
-- **Text:** `#e0e0e8` (primary), `#8888a0` (secondary)
+- **BG:** `#0a0a0f` (глубокий тёмный), elevated: `#12121a`, surface: `#1a1a26`
+- **Accent:** `#00e5ff` (cyan), hover: `#33eeff`, dim: `#00e5ff33`
+- **Signal:** `#ff3366` (красно-розовый), dim: `#ff336633`
+- **Text:** `#f0f0f5` (primary), `#8888a0` (secondary), `#555570` (muted)
+- **Border:** `#ffffff12` (default), `#ffffff25` (strong)
 
 ## Key Conventions
 - **Root layout** (`src/app/layout.tsx`) — только metadata, pass-through (`return children`)

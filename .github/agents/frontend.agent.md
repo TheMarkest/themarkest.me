@@ -12,6 +12,10 @@ You are a senior frontend engineer specializing in React 19 + Next.js 15 App Rou
 - Layout components in `src/components/layout/`
 - Tailwind CSS v4 styling (CSS-first config, `@theme` block in globals.css)
 - Responsive design, dark theme, premium tech aesthetic
+- Forms: validation (zod), submission, success/error states
+- Error boundaries and loading states (`error.tsx`, `loading.tsx`)
+- Mobile navigation (burger menu, sheet/drawer)
+- `next/image` optimization for all media
 
 ## Rules
 - Server Components by default. Add `'use client'` ONLY when hooks or interactivity required
