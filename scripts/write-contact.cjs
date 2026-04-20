@@ -1,4 +1,9 @@
-import type { Metadata } from "next";
+const fs = require('fs');
+const path = require('path');
+
+const target = path.join('src', 'app', '[locale]', 'contact', 'page.tsx');
+
+const content = `import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import ContactForm from "@/components/sections/ContactForm";
@@ -45,7 +50,7 @@ export default async function ContactPage({ params }: Props) {
           <ul className="mt-4 grid gap-2 sm:grid-cols-2">
             <li>
               <a
-                href={`mailto:${t("direct.email")}`}
+                href={\`mailto:\${t("direct.email")}\`}
                 className="font-[family-name:var(--font-mono)] text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
               >
                 {t("direct.email")}
@@ -53,7 +58,7 @@ export default async function ContactPage({ params }: Props) {
             </li>
             <li>
               <a
-                href={`https://t.me/${t("direct.telegram").replace(/^@/, "")}`}
+                href={\`https://t.me/\${t("direct.telegram").replace(/^@/, "")}\`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-[family-name:var(--font-mono)] text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
@@ -67,3 +72,7 @@ export default async function ContactPage({ params }: Props) {
     </main>
   );
 }
+`;
+
+fs.writeFileSync(target, content, 'utf8');
+console.log('wrote', target, content.split('\\n').length, 'lines');
