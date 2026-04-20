@@ -11,127 +11,11 @@
     "lab": "Bureau",
     "content": "Content",
     "shop": "Shop",
-    "contact": "Contact",
-    "menu": "Menu",
-    "close": "Close"
-  },
-  "about": {
-    "meta": {
-      "title": "About Mark | TheMarkest",
-      "description": "Serial CTO, engineering bureau founder, creator of technical shows, and advocate of engineering creativity."
-    },
-    "hero": {
-      "eyebrow": "About Mark",
-      "title": "Engineer, founder, technical storyteller",
-      "lead": "I build products at the intersection of hardware and software, launch startups as CTO, and turn engineering into spectacular content."
-    },
-    "bio": {
-      "title": "Biography",
-      "body": "Mark Bogdanov is a serial CTO and engineering bureau founder. Dozens of prototypes, patents, shipped products, and original technical shows. I work with founders, brands, and productions, turning ideas into working systems."
-    },
-    "timeline": {
-      "title": "Timeline",
-      "items": [
-        {
-          "year": "2014",
-          "title": "First prototypes",
-          "body": "Start in robotics and embedded systems."
-        },
-        {
-          "year": "2018",
-          "title": "First CTO role",
-          "body": "Launching a startup as technical director."
-        },
-        {
-          "year": "2021",
-          "title": "Engineering Bureau",
-          "body": "Opening own workshop and team."
-        },
-        {
-          "year": "2024",
-          "title": "Technical shows",
-          "body": "Launch of a media format about technology and engineering."
-        }
-      ]
-    },
-    "skills": {
-      "title": "Stack & Skills",
-      "groups": {
-        "engineering": {
-          "title": "Engineering",
-          "items": ["Embedded", "Robotics", "Mechatronics", "PCB Design", "3D Printing", "CNC"]
-        },
-        "software": {
-          "title": "Software",
-          "items": ["TypeScript", "Next.js", "Node.js", "Python", "Three.js", "Firebase"]
-        },
-        "product": {
-          "title": "Product",
-          "items": ["CTO Strategy", "R&D", "Prototyping", "Team Building", "Tech Direction"]
-        }
-      }
-    }
-  },
-  "projectsPage": {
-    "meta": {
-      "title": "Projects | TheMarkest",
-      "description": "Flagship projects, prototypes, and engineering experiments."
-    },
-    "hero": {
-      "eyebrow": "Projects",
-      "title": "Shipped systems and prototypes",
-      "lead": "A selection of significant work — from startups to engineering shows."
-    },
-    "filters": {
-      "all": "All",
-      "startup": "Startups",
-      "hardware": "Hardware",
-      "show": "Shows",
-      "rnd": "R&D"
-    },
-    "card": {
-      "viewCase": "View case",
-      "year": "Year",
-      "role": "Role"
-    },
-    "categories": {
-      "startup": "Startup",
-      "hardware": "Hardware",
-      "show": "Show",
-      "rnd": "R&D"
-    },
-    "empty": "No projects in this category yet."
-  },
-  "projectDetail": {
-    "meta": {
-      "titleSuffix": " | TheMarkest"
-    },
-    "eyebrow": "Case study",
-    "back": "← All projects",
-    "info": {
-      "year": "Year",
-      "role": "Role",
-      "category": "Category",
-      "tags": "Tags"
-    },
-    "sections": {
-      "overview": "Overview",
-      "tech": "Tech stack",
-      "outcome": "Outcome"
-    },
-    "notFound": {
-      "title": "Project not found",
-      "description": "This case study may not be published yet."
-    },
-    "cta": {
-      "title": "Have a similar project in mind?",
-      "button": "Get in touch"
-    }
+    "contact": "Contact"
   },
   "hero": {
     "headline": "Serial CTO & Technical Creator",
     "subheadline": "Turning complex technologies into products, prototypes, and spectacular projects at the intersection of engineering, design, and showmanship",
-    "status": "BUILDING THE FUTURE",
     "cta": {
       "projects": "View Projects",
       "collaborate": "Discuss Collaboration",
@@ -139,21 +23,9 @@
       "shop": "Shop"
     }
   },
-  "notFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist.",
-    "goHome": "Go Home"
-  },
   "sections": {
     "trust": {
-      "title": "Trust",
-      "subtitle": "Engineering with proven track record",
-      "metrics": {
-        "years": { "value": "10+", "label": "years in engineering" },
-        "projects": { "value": "40+", "label": "shipped projects" },
-        "startups": { "value": "8", "label": "startups as CTO" },
-        "audience": { "value": "500K+", "label": "audience" }
-      }
+      "title": "Trust"
     },
     "positioning": {
       "title": "Who is Mark",
@@ -177,13 +49,7 @@
     },
     "ecosystem": {
       "title": "Content Ecosystem",
-      "description": "Where to follow projects, breakdowns, and behind-the-scenes",
-      "channels": {
-        "youtube": { "name": "YouTube", "handle": "@themarkest", "description": "Long-form breakdowns and shows" },
-        "telegram": { "name": "Telegram", "handle": "@themarkest", "description": "Behind the scenes and notes" },
-        "instagram": { "name": "Instagram", "handle": "@themarkest", "description": "Visual stream" },
-        "tiktok": { "name": "TikTok", "handle": "@themarkest", "description": "Short concepts" }
-      }
+      "description": "Where to follow projects, breakdowns, and behind-the-scenes"
     },
     "bureau": {
       "title": "Engineering Bureau",
@@ -206,16 +72,6 @@
       }
     }
   },
-  "social": {
-    "instagram": "Instagram",
-    "telegram": "Telegram",
-    "youtube": "YouTube",
-    "tiktok": "TikTok",
-    "threads": "Threads",
-    "linkedin": "LinkedIn",
-    "github": "GitHub",
-    "x": "X"
-  },
   "footer": {
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
@@ -223,220 +79,8 @@
   },
   "common": {
     "loading": "Loading...",
-    "loadingPage": "Loading page...",
     "readMore": "Read More",
     "backToTop": "Back to Top",
     "switchLang": "RU"
-  },
-  "errors": {
-    "generic": {
-      "title": "Something went wrong",
-      "description": "An unexpected error occurred. Try again or return home.",
-      "retry": "Try again",
-      "home": "Go home"
-    }
-  },
-  "contactPage": {
-    "meta": {
-      "title": "Contact | TheMarkest",
-      "description": "Get in touch with Mark Bogdanov — partnerships, bureau projects, media, speaking."
-    },
-    "hero": {
-      "eyebrow": "Contact",
-      "title": "Let's discuss your project",
-      "lead": "Describe your project — I respond within 48 hours."
-    },
-    "form": {
-      "type": {
-        "label": "Request type",
-        "options": {
-          "partnership": "Partnership",
-          "founder": "Startup / CTO",
-          "bureau": "Bureau",
-          "media": "Media / Speaking",
-          "product": "Product / Merch",
-          "general": "General"
-        }
-      },
-      "name": {
-        "label": "Name",
-        "placeholder": "Your name"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "you@example.com"
-      },
-      "company": {
-        "label": "Company",
-        "placeholder": "Optional"
-      },
-      "message": {
-        "label": "Message",
-        "placeholder": "Tell me about your project..."
-      },
-      "submit": "Send",
-      "submitting": "Sending...",
-      "success": "Message sent. I'll be in touch soon.",
-      "error": "Failed to send. Please try again.",
-      "errors": {
-        "name": "Name is required",
-        "email": "Invalid email",
-        "message": "Message is too short",
-        "type": "Select a type"
-      }
-    },
-    "direct": {
-      "title": "Direct channels",
-      "email": "hello@themarkest.me",
-      "telegram": "@themarkest"
-    }
-  },
-  "shopPage": {
-    "meta": {
-      "title": "Shop | TheMarkest",
-      "description": "Original objects, merch, and limited drops from TheMarkest."
-    },
-    "hero": {
-      "eyebrow": "Shop",
-      "title": "Objects, merch, and drops",
-      "lead": "Limited items from the bureau and signature merch."
-    },
-    "categories": {
-      "all": "All",
-      "objects": "Objects",
-      "merch": "Merch",
-      "prints": "Prints"
-    },
-    "card": {
-      "soldOut": "Sold out",
-      "preorder": "Preorder",
-      "from": "from",
-      "view": "View"
-    },
-    "empty": "New items coming soon.",
-    "notice": "Shop is in preview mode. Checkout is temporarily disabled."
-  },
-  "labPage": {
-    "hero": {
-      "eyebrow": "Bureau",
-      "title": "Engineering Bureau",
-      "lead": "The internal team and workshop of TheMarkest. We turn Mark’s and partners’ ideas into working systems — from prototype to small series."
-    },
-    "intro": {
-      "title": "A lab, not an agency",
-      "body": "The bureau is an extension of Mark: a compact team of engineers, designers and product people assembled for hard problems at the hardware/software edge. We don’t replace the author — we scale his execution."
-    },
-    "capabilities": {
-      "title": "What we do",
-      "items": {
-        "hardware": { "title": "Hardware development", "body": "Electronics, PCB, mechatronics, enclosures, prototype assembly in metal and plastic." },
-        "software": { "title": "Software & systems", "body": "Embedded, servers, web, mobile, on-device ML inference, telemetry and cloud." },
-        "prototyping": { "title": "Rapid prototyping", "body": "From idea to working prototype in weeks: 3D printing, CNC, laser, hand assembly, iteration." },
-        "rnd": { "title": "R&D and specials", "body": "Non-standard engineering: AR/VR, robotics, show technology, niche B2B." },
-        "product": { "title": "Product architecture", "body": "CTO function: tech strategy, MVP, stack choices, hiring, taking it to production." },
-        "show": { "title": "Shows & installations", "body": "Interactive objects, stage systems, media art, spectacular engineering builds." }
-      }
-    },
-    "process": {
-      "title": "How we work",
-      "steps": {
-        "discover": { "title": "01 · Discovery", "body": "We unpack the task, constraints, budget, expected outcome and risks." },
-        "design": { "title": "02 · Design", "body": "Architecture, spec, technology choices, milestone estimate." },
-        "build": { "title": "03 · Build", "body": "Iterative development with prototypes and regular demo cadence." },
-        "ship": { "title": "04 · Ship & support", "body": "Production handover, documentation, transfer to client team or ongoing support from the bureau." }
-      }
-    },
-    "cta": {
-      "title": "Have a project for the bureau?",
-      "body": "Tell us about it — we’ll see whether it fits our format.",
-      "button": "Discuss project"
-    }
-  },
-  "collaborationPage": {
-    "hero": {
-      "eyebrow": "Collaboration",
-      "title": "Engagement formats",
-      "lead": "Partnership, CTO role, bureau projects, media and speaking — pick the format that fits and tell me about the task."
-    },
-    "formats": {
-      "title": "Who and how I work with",
-      "items": {
-        "partnership": { "title": "Partnership", "body": "Long-term alliances with brands, productions, labs and funds at the intersection of tech and media." },
-        "founder": { "title": "Founder / CTO role", "body": "I help launch startups as technical co-founder, fractional CTO, or technical advisor." },
-        "bureau": { "title": "Bureau project", "body": "Turn-key hardware + software contract work delivered by the in-house team." },
-        "media": { "title": "Media & speaking", "body": "Interviews, talks, technical shows, collaborations with creators and brands." },
-        "product": { "title": "Product & merch", "body": "Joint drops, limited objects, co-branding with an engineering edge." }
-      }
-    },
-    "fit": {
-      "title": "When to reach out",
-      "good": {
-        "title": "Good fit",
-        "items": ["Technically hard problems at the hardware/software edge", "Launches with a real timeline and budget", "Startups that need a strong technical partner", "Media projects where engineering depth matters", "Ideas commonly considered ‘too complex’"]
-      },
-      "bad": {
-        "title": "Not a fit",
-        "items": ["Template websites and mobile apps with no R&D", "Grey-market or unethical work", "Projects without budget or timeline", "‘Make it pretty, we’ll figure the rest out later’"]
-      }
-    },
-    "cta": {
-      "title": "Ready to talk?",
-      "body": "Fill out the short form — I respond within 48 hours.",
-      "button": "Go to contact"
-    }
-  },
-  "contentPage": {
-    "hero": {
-      "eyebrow": "Content & Media",
-      "title": "Where to watch and read",
-      "lead": "Long-form breakdowns, short-form concepts, behind-the-scenes from the bureau and notes. Build your own channel for TheMarkest."
-    },
-    "formats": {
-      "title": "Formats",
-      "items": {
-        "longform": { "title": "Long-form video", "body": "Deep breakdowns of projects, engineering decisions and technical shows." },
-        "shortform": { "title": "Short-form", "body": "Quick concepts, experiments, moments from the workshop." },
-        "behindthescenes": { "title": "Behind-the-scenes", "body": "Behind product launches, shows and bureau work." },
-        "notes": { "title": "Notes & breakdowns", "body": "Texts on technology, product and engineering culture." }
-      }
-    },
-    "channels": {
-      "title": "Channels",
-      "items": {
-        "youtube": { "name": "YouTube", "handle": "@themarkest", "description": "Long-form breakdowns and shows", "href": "https://youtube.com/@themarkest" },
-        "telegram": { "name": "Telegram", "handle": "@themarkest", "description": "Notes, announcements, behind-the-scenes", "href": "https://t.me/themarkest" },
-        "instagram": { "name": "Instagram", "handle": "@themarkest", "description": "Visual feed and stories", "href": "https://instagram.com/themarkest" },
-        "tiktok": { "name": "TikTok", "handle": "@themarkest", "description": "Short-form and concepts", "href": "https://tiktok.com/@themarkest" },
-        "x": { "name": "X", "handle": "@themarkest", "description": "Thoughts and tech commentary", "href": "https://x.com/themarkest" },
-        "github": { "name": "GitHub", "handle": "themarkest", "description": "Code and open-source", "href": "https://github.com/themarkest" }
-      }
-    },
-    "cta": {
-      "title": "Subscribe to the main channel",
-      "body": "Headline formats live on YouTube — long-form is mirrored there too.",
-      "button": "Open YouTube"
-    }
-  },
-  "pagesMeta": {
-    "collaboration": {
-      "title": "Collaboration | TheMarkest",
-      "description": "Engagement formats: partnership, CTO role, bureau projects, media."
-    },
-    "lab": {
-      "title": "Bureau | TheMarkest",
-      "description": "TheMarkest engineering bureau — team, workshop, R&D."
-    },
-    "content": {
-      "title": "Content | TheMarkest",
-      "description": "Videos, breakdowns, technical shows, and behind-the-scenes."
-    },
-    "privacy": {
-      "title": "Privacy Policy | TheMarkest",
-      "description": "How we process personal data."
-    },
-    "terms": {
-      "title": "Terms | TheMarkest",
-      "description": "Terms of use for themarkest.me."
-    }
   }
 }
