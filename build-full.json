@@ -1,0 +1,271 @@
+{
+  "id": "c63fc1be-b342-4c8b-9ba0-5890651cde30",
+  "status": "FAILURE",
+  "source": {
+    "developerConnectConfig": {
+      "gitRepositoryLink": "projects/themarkestmesite/locations/europe-west4/connections/apphosting-github-conn-8cnvf6/gitRepositoryLinks/TheMarkest-themarkest.me",
+      "revision": "5c93d7b9be1ca85047cab172966bfd9afaa7ca46"
+    }
+  },
+  "createTime": "2026-04-20T19:45:35.021314479Z",
+  "startTime": "2026-04-20T19:45:35.849214786Z",
+  "finishTime": "2026-04-20T19:46:15.306029Z",
+  "results": {
+    "buildStepImages": [
+      "sha256:c9b9e32c774d705c3b8270a58cd544189e998ccb4ac6595da645612ce4590894",
+      "sha256:cc6a7fbe7cf88f3e56b9c3a94ea83714507a4f6ffcc0c27d1824fe1133f33aa0",
+      "sha256:739052836b95d0b416c32f2af0197ac3d4529841d19377da1c7d2350e89de317",
+      "sha256:739052836b95d0b416c32f2af0197ac3d4529841d19377da1c7d2350e89de317",
+      ""
+    ],
+    "buildStepOutputs": [
+      "",
+      "",
+      "",
+      "eyJtZXRyaWNzIjp7fSwiZXJyb3IiOnsiYnVpbGRwYWNrSWQiOiJnb29nbGUubm9kZWpzLm5wbSIsImJ1aWxkcGFja1ZlcnNpb24iOiIxLjEuMSIsImVycm9yVHlwZSI6IlVOS05PV04iLCJjYW5vbmljYWxDb2RlIjoiVU5LTk9XTiIsImVycm9ySWQiOiI3ZmEzM2FhYSIsImVycm9yTWVzc2FnZSI6Im5wbSBlcnJvciBjb2RlIEVVU0FHRVxubnBtIGVycm9yXG5ucG0gZXJyb3IgYG5wbSBjaWAgY2FuIG9ubHkgaW5zdGFsbCBwYWNrYWdlcyB3aGVuIHlvdXIgcGFja2FnZS5qc29uIGFuZCBwYWNrYWdlLWxvY2suanNvbiBvciBucG0tc2hyaW5rd3JhcC5qc29uIGFyZSBpbiBzeW5jLiBQbGVhc2UgdXBkYXRlIHlvdXIgbG9jayBmaWxlIHdpdGggYG5wbSBpbnN0YWxsYCBiZWZvcmUgY29udGludWluZy5cbm5wbSBlcnJvclxubnBtIGVycm9yIE1pc3Npbmc6IEBzd2MvaGVscGVyc0AwLjUuMjEgZnJvbSBsb2NrIGZpbGVcbm5wbSBlcnJvclxubnBtIGVycm9yIENsZWFuIGluc3RhbGwgYSBwcm9qZWN0XG5ucG0gZXJyb3Jcbm5wbSBlcnJvciBVc2FnZTpcbm5wbSBlcnJvciBucG0gY2lcbm5wbSBlcnJvclxubnBtIGVycm9yIE9wdGlvbnM6XG5ucG0gZXJyb3IgWy0taW5zdGFsbC1zdHJhdGVneSBcdTAwM2Nob2lzdGVkfG5lc3RlZHxzaGFsbG93fGxpbmtlZFx1MDAzZV0gWy0tbGVnYWN5LWJ1bmRsaW5nXVxubnBtIGVycm9yIFstLWdsb2JhbC1zdHlsZV0gWy0tb21pdCBcdTAwM2NkZXZ8b3B0aW9uYWx8cGVlclx1MDAzZSBbLS1vbWl0IFx1MDAzY2RldnxvcHRpb25hbHxwZWVyXHUwMDNlIC4uLl1dXG5ucG0gZXJyb3IgWy0taW5jbHVkZSBcdTAwM2Nwcm9kfGRldnxvcHRpb25hbHxwZWVyXHUwMDNlIFstLWluY2x1ZGUgXHUwMDNjcHJvZHxkZXZ8b3B0aW9uYWx8cGVlclx1MDAzZSAuLi5dXVxubnBtIGVycm9yIFstLXN0cmljdC1wZWVyLWRlcHNdIFstLWZvcmVncm91bmQtc2NyaXB0c10gWy0taWdub3JlLXNjcmlwdHNdIFstLW5vLWF1ZGl0XVxubnBtIGVycm9yIFstLW5vLWJpbi1saW5rc10gWy0tbm8tZnVuZF0gWy0tZHJ5LXJ1bl1cbm5wbSBlcnJvciBbLXd8LS13b3Jrc3BhY2UgXHUwMDNjd29ya3NwYWNlLW5hbWVcdTAwM2UgWy13fC0td29ya3NwYWNlIFx1MDAzY3dvcmtzcGFjZS1uYW1lXHUwMDNlIC4uLl1dXG5ucG0gZXJyb3IgWy13c3wtLXdvcmtzcGFjZXNdIFstLWluY2x1ZGUtd29ya3NwYWNlLXJvb3RdIFstLWluc3RhbGwtbGlua3NdXG5ucG0gZXJyb3Jcbm5wbSBlcnJvciBhbGlhc2VzOiBjbGVhbi1pbnN0YWxsLCBpYywgaW5zdGFsbC1jbGVhbiwgaXNudGFsbC1jbGVhblxubnBtIGVycm9yXG5ucG0gZXJyb3IgUnVuIFwibnBtIGhlbHAgY2lcIiBmb3IgbW9yZSBpbmZvXG5ucG0gZXJyb3IgQSBjb21wbGV0ZSBsb2cgb2YgdGhpcyBydW4gY2FuIGJlIGZvdW5kIGluOiAvd3d3LWRhdGEtaG9tZS8ubnBtL19sb2dzLzIwMjYtMDQtMjBUMTlfNDZfMDJfMDgyWi1kZWJ1Zy0wLmxvZyJ9LCJtZXRhZGF0YSI6eyJtIjp7IjgiOiJucG0ifX0sInN0YXRzIjpudWxsLCJ3YXJuaW5ncyI6bnVsbCwiY3VzdG9tSW1hZ2UiOmZhbHNlfQ==",
+      ""
+    ]
+  },
+  "steps": [
+    {
+      "name": "gcr.io/cloud-builders/gcloud",
+      "args": [
+        "-c",
+        "chmod -R ugo+rw /output_bundle /workspace /env /yaml /config"
+      ],
+      "id": "ubuntu",
+      "entrypoint": "bash",
+      "volumes": [
+        {
+          "name": "output_bundle",
+          "path": "/output_bundle"
+        },
+        {
+          "name": "env",
+          "path": "/env"
+        },
+        {
+          "name": "yaml",
+          "path": "/yaml"
+        },
+        {
+          "name": "config",
+          "path": "/config"
+        }
+      ],
+      "timing": {
+        "startTime": "2026-04-20T19:45:39.209088629Z",
+        "endTime": "2026-04-20T19:45:40.041755920Z"
+      },
+      "status": "SUCCESS",
+      "pullTiming": {
+        "startTime": "2026-04-20T19:45:39.209088629Z",
+        "endTime": "2026-04-20T19:45:39.217024728Z"
+      }
+    },
+    {
+      "name": "europe-west4-docker.pkg.dev/serverless-runtimes/utilities/preparer:base_20260226_18_04_RC00",
+      "args": [
+        "--project_id",
+        "themarkestmesite",
+        "--apphostingyaml_output_filepath",
+        "/yaml/apphostingyaml_processed",
+        "--dot_env_output_filepath",
+        "/platform/env",
+        "--backend_root_directory",
+        "",
+        "--buildpack_config_output_filepath",
+        "/config",
+        "--firebase_config",
+        "{\"databaseURL\":\"\",\"projectId\":\"themarkestmesite\",\"storageBucket\":\"themarkestmesite.firebasestorage.app\"}",
+        "--firebase_webapp_config",
+        "{\"apiKey\":\"AIzaSyDxyycQnVePwzrSCbFHYlg5WxABUUMI3PM\",\"appId\":\"1:863448933101:web:d68c9f9f2e626e1766a2e4\",\"authDomain\":\"themarkestmesite.firebaseapp.com\",\"databaseURL\":\"\",\"messagingSenderId\":\"863448933101\",\"projectId\":\"themarkestmesite\",\"storageBucket\":\"themarkestmesite.firebasestorage.app\"}",
+        "--region",
+        "europe-west4"
+      ],
+      "id": "preparer",
+      "entrypoint": "/bin/preparer",
+      "volumes": [
+        {
+          "name": "output_bundle",
+          "path": "/output_bundle"
+        },
+        {
+          "name": "env",
+          "path": "/env"
+        },
+        {
+          "name": "yaml",
+          "path": "/yaml"
+        },
+        {
+          "name": "config",
+          "path": "/config"
+        }
+      ],
+      "timing": {
+        "startTime": "2026-04-20T19:45:40.041837400Z",
+        "endTime": "2026-04-20T19:45:49.233921511Z"
+      },
+      "status": "SUCCESS",
+      "pullTiming": {
+        "startTime": "2026-04-20T19:45:40.041837400Z",
+        "endTime": "2026-04-20T19:45:47.225585012Z"
+      }
+    },
+    {
+      "name": "europe-west4-docker.pkg.dev/serverless-runtimes/google-22-full/builder/nodejs:nodejs_20260414_RC00_lightweight",
+      "env": [
+        "X_GOOGLE_TARGET_PLATFORM=fah",
+        "APPHOSTINGYAML_FILEPATH=/yaml/apphostingyaml_processed",
+        "FIREBASE_OUTPUT_BUNDLE_DIR=/output_bundle",
+        "FIREBASE_APP_HOSTING=1",
+        "NEXTJS_ADAPTER_VERSION=14.0.21",
+        "ANGULAR_ADAPTER_VERSION=17.2.17"
+      ],
+      "args": [
+        "-c",
+        "export GOOGLE_BUILDABLE=\"$(cat /config/relative-project-directory.txt)\" && \\\n\t\t\t\t/bin/shim --app_image_unique=europe-west4-docker.pkg.dev/themarkestmesite/firebaseapphosting-images/themarkestme:build-2026-04-20-004 --app_image_stable=europe-west4-docker.pkg.dev/themarkestmesite/firebaseapphosting-images/themarkestme:build-2026-04-20-004 --env_var_names=X_GOOGLE_TARGET_PLATFORM,APPHOSTINGYAML_FILEPATH,FIREBASE_OUTPUT_BUNDLE_DIR,FIREBASE_APP_HOSTING,NEXTJS_ADAPTER_VERSION,ANGULAR_ADAPTER_VERSION,GOOGLE_BUILDABLE,BUILDER_OUTPUT --experimental_skip_retag_cache"
+      ],
+      "id": "pre-buildpack",
+      "entrypoint": "/bin/sh",
+      "volumes": [
+        {
+          "name": "config",
+          "path": "/config"
+        }
+      ],
+      "timing": {
+        "startTime": "2026-04-20T19:45:49.234003062Z",
+        "endTime": "2026-04-20T19:45:53.620027130Z"
+      },
+      "status": "SUCCESS",
+      "pullTiming": {
+        "startTime": "2026-04-20T19:45:49.234003062Z",
+        "endTime": "2026-04-20T19:45:52.892368490Z"
+      }
+    },
+    {
+      "name": "europe-west4-docker.pkg.dev/serverless-runtimes/google-22-full/builder/nodejs:nodejs_20260414_RC00_lightweight",
+      "env": [
+        "CNB_RUN_IMAGE=europe-west4-docker.pkg.dev/serverless-runtimes/google-22/run/base:public-image-next"
+      ],
+      "args": [
+        "-c",
+        "export CNB_APP_DIR=\"/workspace/$(cat /config/build-directory.txt)\" && \\\n\t\t\t\t/cnb/lifecycle/creator europe-west4-docker.pkg.dev/themarkestmesite/firebaseapphosting-images/themarkestme:build-2026-04-20-004"
+      ],
+      "id": "build",
+      "entrypoint": "/bin/sh",
+      "volumes": [
+        {
+          "name": "output_bundle",
+          "path": "/output_bundle"
+        },
+        {
+          "name": "env",
+          "path": "/env"
+        },
+        {
+          "name": "config",
+          "path": "/config"
+        },
+        {
+          "name": "yaml",
+          "path": "/yaml"
+        }
+      ],
+      "timing": {
+        "startTime": "2026-04-20T19:45:53.620113472Z",
+        "endTime": "2026-04-20T19:46:04.725333369Z"
+      },
+      "status": "FAILURE",
+      "pullTiming": {
+        "startTime": "2026-04-20T19:45:53.620113472Z",
+        "endTime": "2026-04-20T19:45:53.623006553Z"
+      },
+      "exitCode": 51
+    },
+    {
+      "name": "europe-west4-docker.pkg.dev/serverless-runtimes/utilities/publisher:base_20260226_18_04_RC00",
+      "args": [
+        "--apphostingyaml_filepath",
+        "/yaml/apphostingyaml_processed",
+        "--output_bundle_dir",
+        "/output_bundle"
+      ],
+      "id": "publisher",
+      "entrypoint": "/bin/publisher",
+      "volumes": [
+        {
+          "name": "output_bundle",
+          "path": "/output_bundle"
+        },
+        {
+          "name": "yaml",
+          "path": "/yaml"
+        }
+      ],
+      "status": "QUEUED"
+    }
+  ],
+  "timeout": "3600s",
+  "projectId": "themarkestmesite",
+  "sourceProvenance": {},
+  "options": {
+    "logging": "CLOUD_LOGGING_ONLY",
+    "env": [
+      "CNB_PLATFORM_API=0.11",
+      "CNB_USER_ID=33",
+      "CNB_GROUP_ID=33",
+      "CNB_PLATFORM_DIR=/platform",
+      "CNB_LAYERS_DIR=/layers",
+      "CNB_ANALYZED_PATH=/layers/analyzed.toml",
+      "CNB_BUILDPACKS_DIR=/cnb/buildpacks",
+      "CNB_GROUP_PATH=/layers/group.toml",
+      "CNB_PLAN_PATH=/layers/plan.toml"
+    ],
+    "volumes": [
+      {
+        "name": "platform",
+        "path": "/platform"
+      },
+      {
+        "name": "layers",
+        "path": "/layers"
+      }
+    ],
+    "pool": {}
+  },
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds;region=europe-west4/c63fc1be-b342-4c8b-9ba0-5890651cde30?project=863448933101",
+  "tags": [
+    "fah",
+    "build-2026-04-20-004",
+    "themarkestme",
+    "5c93d7b9be1ca85047cab172966bfd9afaa7ca46",
+    "p-fah",
+    "r-nodejs",
+    "b-nodejs_20260414_RC00",
+    "bt-LIFECYCLE"
+  ],
+  "timing": {
+    "FETCHSOURCE": {
+      "startTime": "2026-04-20T19:45:36.493416588Z",
+      "endTime": "2026-04-20T19:45:38.571637724Z"
+    },
+    "BUILD": {
+      "startTime": "2026-04-20T19:45:38.572728485Z",
+      "endTime": "2026-04-20T19:46:04.725380540Z"
+    },
+    "GIT_SOURCE": {
+      "startTime": "2026-04-20T19:45:36.493416588Z",
+      "endTime": "2026-04-20T19:45:38.571637724Z"
+    }
+  },
+  "queueTtl": "3600s",
+  "serviceAccount": "projects/themarkestmesite/serviceAccounts/firebase-app-hosting-compute@themarkestmesite.iam.gserviceaccount.com",
+  "name": "projects/863448933101/locations/europe-west4/builds/c63fc1be-b342-4c8b-9ba0-5890651cde30",
+  "failureInfo": {
+    "type": "USER_BUILD_STEP",
+    "detail": "Build step failure: build step 3 \"europe-west4-docker.pkg.dev/serverless-runtimes/google-22-full/builder/nodejs:nodejs_20260414_RC00_lightweight\" failed: step exited with non-zero status: 51"
+  }
+}
