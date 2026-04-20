@@ -316,12 +316,105 @@
     "empty": "New items coming soon.",
     "notice": "Shop is in preview mode. Checkout is temporarily disabled."
   },
-  "errors": {
-    "generic": {
-      "title": "Something went wrong",
-      "description": "An unexpected error occurred. Please try refreshing the page.",
-      "retry": "Try again",
-      "home": "Go home"
+  "labPage": {
+    "hero": {
+      "eyebrow": "Bureau",
+      "title": "Engineering Bureau",
+      "lead": "The internal team and workshop of TheMarkest. We turn Mark’s and partners’ ideas into working systems — from prototype to small series."
+    },
+    "intro": {
+      "title": "A lab, not an agency",
+      "body": "The bureau is an extension of Mark: a compact team of engineers, designers and product people assembled for hard problems at the hardware/software edge. We don’t replace the author — we scale his execution."
+    },
+    "capabilities": {
+      "title": "What we do",
+      "items": {
+        "hardware": { "title": "Hardware development", "body": "Electronics, PCB, mechatronics, enclosures, prototype assembly in metal and plastic." },
+        "software": { "title": "Software & systems", "body": "Embedded, servers, web, mobile, on-device ML inference, telemetry and cloud." },
+        "prototyping": { "title": "Rapid prototyping", "body": "From idea to working prototype in weeks: 3D printing, CNC, laser, hand assembly, iteration." },
+        "rnd": { "title": "R&D and specials", "body": "Non-standard engineering: AR/VR, robotics, show technology, niche B2B." },
+        "product": { "title": "Product architecture", "body": "CTO function: tech strategy, MVP, stack choices, hiring, taking it to production." },
+        "show": { "title": "Shows & installations", "body": "Interactive objects, stage systems, media art, spectacular engineering builds." }
+      }
+    },
+    "process": {
+      "title": "How we work",
+      "steps": {
+        "discover": { "title": "01 · Discovery", "body": "We unpack the task, constraints, budget, expected outcome and risks." },
+        "design": { "title": "02 · Design", "body": "Architecture, spec, technology choices, milestone estimate." },
+        "build": { "title": "03 · Build", "body": "Iterative development with prototypes and regular demo cadence." },
+        "ship": { "title": "04 · Ship & support", "body": "Production handover, documentation, transfer to client team or ongoing support from the bureau." }
+      }
+    },
+    "cta": {
+      "title": "Have a project for the bureau?",
+      "body": "Tell us about it — we’ll see whether it fits our format.",
+      "button": "Discuss project"
+    }
+  },
+  "collaborationPage": {
+    "hero": {
+      "eyebrow": "Collaboration",
+      "title": "Engagement formats",
+      "lead": "Partnership, CTO role, bureau projects, media and speaking — pick the format that fits and tell me about the task."
+    },
+    "formats": {
+      "title": "Who and how I work with",
+      "items": {
+        "partnership": { "title": "Partnership", "body": "Long-term alliances with brands, productions, labs and funds at the intersection of tech and media." },
+        "founder": { "title": "Founder / CTO role", "body": "I help launch startups as technical co-founder, fractional CTO, or technical advisor." },
+        "bureau": { "title": "Bureau project", "body": "Turn-key hardware + software contract work delivered by the in-house team." },
+        "media": { "title": "Media & speaking", "body": "Interviews, talks, technical shows, collaborations with creators and brands." },
+        "product": { "title": "Product & merch", "body": "Joint drops, limited objects, co-branding with an engineering edge." }
+      }
+    },
+    "fit": {
+      "title": "When to reach out",
+      "good": {
+        "title": "Good fit",
+        "items": ["Technically hard problems at the hardware/software edge", "Launches with a real timeline and budget", "Startups that need a strong technical partner", "Media projects where engineering depth matters", "Ideas commonly considered ‘too complex’"]
+      },
+      "bad": {
+        "title": "Not a fit",
+        "items": ["Template websites and mobile apps with no R&D", "Grey-market or unethical work", "Projects without budget or timeline", "‘Make it pretty, we’ll figure the rest out later’"]
+      }
+    },
+    "cta": {
+      "title": "Ready to talk?",
+      "body": "Fill out the short form — I respond within 48 hours.",
+      "button": "Go to contact"
+    }
+  },
+  "contentPage": {
+    "hero": {
+      "eyebrow": "Content & Media",
+      "title": "Where to watch and read",
+      "lead": "Long-form breakdowns, short-form concepts, behind-the-scenes from the bureau and notes. Build your own channel for TheMarkest."
+    },
+    "formats": {
+      "title": "Formats",
+      "items": {
+        "longform": { "title": "Long-form video", "body": "Deep breakdowns of projects, engineering decisions and technical shows." },
+        "shortform": { "title": "Short-form", "body": "Quick concepts, experiments, moments from the workshop." },
+        "behindthescenes": { "title": "Behind-the-scenes", "body": "Behind product launches, shows and bureau work." },
+        "notes": { "title": "Notes & breakdowns", "body": "Texts on technology, product and engineering culture." }
+      }
+    },
+    "channels": {
+      "title": "Channels",
+      "items": {
+        "youtube": { "name": "YouTube", "handle": "@themarkest", "description": "Long-form breakdowns and shows", "href": "https://youtube.com/@themarkest" },
+        "telegram": { "name": "Telegram", "handle": "@themarkest", "description": "Notes, announcements, behind-the-scenes", "href": "https://t.me/themarkest" },
+        "instagram": { "name": "Instagram", "handle": "@themarkest", "description": "Visual feed and stories", "href": "https://instagram.com/themarkest" },
+        "tiktok": { "name": "TikTok", "handle": "@themarkest", "description": "Short-form and concepts", "href": "https://tiktok.com/@themarkest" },
+        "x": { "name": "X", "handle": "@themarkest", "description": "Thoughts and tech commentary", "href": "https://x.com/themarkest" },
+        "github": { "name": "GitHub", "handle": "themarkest", "description": "Code and open-source", "href": "https://github.com/themarkest" }
+      }
+    },
+    "cta": {
+      "title": "Subscribe to the main channel",
+      "body": "Headline formats live on YouTube — long-form is mirrored there too.",
+      "button": "Open YouTube"
     }
   },
   "pagesMeta": {
