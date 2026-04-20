@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
@@ -15,22 +15,24 @@ const TYPE_KEYS = [
 
 type TypeKey = (typeof TYPE_KEYS)[number];
 
-function isTypeKey(value: string | null): value is TypeKey {
+function isTypeKey(value: string | null | undefined): value is TypeKey {
   return !!value && (TYPE_KEYS as readonly string[]).includes(value);
 }
 
 type FieldErrors = Partial<Record<"type" | "name" | "email" | "company" | "message", string[]>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function ContactForm() {
+interface Props {
+  initialType: TypeKey;
+}
+
+export default function ContactForm({ initialType }: Props) {
   const t = useTranslations("contactPage.form");
   const searchParams = useSearchParams();
 
-  const initialType = useMemo<TypeKey>(() => {
-    const param = searchParams.get("type");
-    return isTypeKey(param) ? param : "general";
-  }, [searchParams]);
-
+  // initialType comes from the server component (reliable).
+  // useSearchParams keeps the chip in sync if the user navigates between
+  // type chips while already on the contact page (client-side nav).
   const [type, setType] = useState<TypeKey>(initialType);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,7 +41,6 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
 
-  // Keep select in sync if user clicks another CTA chip while on the page.
   useEffect(() => {
     const param = searchParams.get("type");
     if (isTypeKey(param)) {

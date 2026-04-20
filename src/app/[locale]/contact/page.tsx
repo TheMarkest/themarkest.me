@@ -1,10 +1,26 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import ContactForm from "@/components/sections/ContactForm";
 
+const TYPE_KEYS = [
+  "partnership",
+  "founder",
+  "bureau",
+  "media",
+  "product",
+  "general",
+] as const;
+type TypeKey = (typeof TYPE_KEYS)[number];
+
+function resolveType(raw: string | string[] | undefined): TypeKey {
+  const v = Array.isArray(raw) ? raw[0] : raw;
+  return v && (TYPE_KEYS as readonly string[]).includes(v) ? (v as TypeKey) : "general";
+}
+
 type Props = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ type?: string | string[] }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -14,10 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t("title"), description: t("description") };
 }
 
-export default async function ContactPage({ params }: Props) {
+export default async function ContactPage({ params, searchParams }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "contactPage" });
+  const { type } = await searchParams;
+  const initialType = resolveType(type);
 
   return (
     <main className="min-h-screen">
@@ -35,7 +53,7 @@ export default async function ContactPage({ params }: Props) {
         </section>
 
         <Suspense fallback={null}>
-          <ContactForm />
+          <ContactForm initialType={initialType} />
         </Suspense>
 
         <section className="mt-20 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6">
