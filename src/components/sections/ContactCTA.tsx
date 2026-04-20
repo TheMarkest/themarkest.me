@@ -42,7 +42,7 @@ export default function ContactCTA() {
             ).map((type) => (
               <Link
                 key={type}
-                href={`/contact?type=${type}`}
+                href={{ pathname: "/contact", query: { type } }}
                 className="rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] px-5 py-2.5 font-[family-name:var(--font-mono)] text-sm text-[var(--color-text-secondary)] transition-all duration-[var(--duration-normal)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
                 {t(`types.${type}`)}

@@ -87,25 +87,36 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-12 space-y-6" noValidate>
-      <div>
-        <label htmlFor="contact-type" className={labelClass}>
-          {t("type.label")}
-        </label>
-        <select
-          id="contact-type"
-          name="type"
-          value={type}
-          onChange={(e) => setType(e.target.value as TypeKey)}
-          className={`${inputClass} mt-2 appearance-none`}
+      <fieldset>
+        <legend className={labelClass}>{t("type.label")}</legend>
+        <div
+          role="radiogroup"
+          aria-label={t("type.label")}
+          className="mt-2 flex flex-wrap gap-2"
         >
-          {TYPE_KEYS.map((key) => (
-            <option key={key} value={key} className="bg-[var(--color-bg-elevated)]">
-              {t(`type.options.${key}`)}
-            </option>
-          ))}
-        </select>
+          {TYPE_KEYS.map((key) => {
+            const active = type === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => setType(key)}
+                className={
+                  active
+                    ? "rounded-[var(--radius-md)] border border-[var(--color-accent)] bg-[var(--color-accent-dim)] px-4 py-2 font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-[var(--color-accent)] transition"
+                    : "rounded-[var(--radius-md)] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] px-4 py-2 font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-[var(--color-text-secondary)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                }
+              >
+                {t(`type.options.${key}`)}
+              </button>
+            );
+          })}
+        </div>
+        <input type="hidden" name="type" value={type} />
         {errors.type?.[0] && <p className={errorClass}>{t("errors.type")}</p>}
-      </div>
+      </fieldset>
 
       <div className="grid gap-6 md:grid-cols-2">
         <div>
