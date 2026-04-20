@@ -3,12 +3,16 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
+import HeroSceneClient from "@/components/three/HeroSceneClient";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
 
   return (
     <section className="noise-overlay relative flex min-h-screen items-center justify-center overflow-hidden">
+      {/* 3D background scene */}
+      <HeroSceneClient />
+
       {/* Grid background */}
       <div className="grid-pattern pointer-events-none absolute inset-0 opacity-30" />
 

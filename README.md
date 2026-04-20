@@ -55,3 +55,63 @@ src/
 - **next-intl** with `/ru/` and `/en/` URL prefixes
 - **Progressive enhancement:** content first, then animations, then 3D
 - **Fallbacks** for WebGL, reduced motion, slow connections
+
+## Deployment (Firebase App Hosting)
+
+Project ID: `themarkestmesite` · Recommended region: `us-east1` (matches `firebase.json`).
+
+### 1. Install & login
+
+```bash
+npm i -g firebase-tools
+firebase login
+firebase use themarkestmesite
+```
+
+### 2. Create secrets in Cloud Secret Manager
+
+Run once per secret. The CLI will prompt for the value:
+
+```bash
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_API_KEY
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_PROJECT_ID
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_APP_ID
+firebase apphosting:secrets:set NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+firebase apphosting:secrets:set FIREBASE_SERVICE_ACCOUNT_JSON
+```
+
+### 3. Grant the backend access to each secret
+
+Replace `<BACKEND_ID>` with your App Hosting backend id:
+
+```bash
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_API_KEY --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_PROJECT_ID --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_APP_ID --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID --backend <BACKEND_ID>
+firebase apphosting:secrets:grantaccess FIREBASE_SERVICE_ACCOUNT_JSON --backend <BACKEND_ID>
+```
+
+### 4. Create the App Hosting backend (connected to GitHub)
+
+```bash
+firebase apphosting:backends:create
+```
+
+Or create it from the Firebase Console UI (App Hosting → Create backend → connect this GitHub repo).
+
+### 5. Deploy
+
+Push to the connected branch — App Hosting will auto-build and deploy on every push.
+
+### Prerequisites in the Firebase Console
+
+- **Firestore** must be enabled in **Native mode**.
+- **Storage** default bucket is auto-created on first use.
+- **Analytics** is initialized client-side via `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`.

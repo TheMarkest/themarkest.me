@@ -7,13 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "firebase": "firebase",
+    "deploy:secrets": "node scripts/set-secrets.mjs"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.12.0",
+    "firebase-admin": "^13.8.0",
     "framer-motion": "^11.18.0",
     "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
@@ -32,6 +37,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.172.0",
     "eslint-config-next": "^15.5.15",
+    "firebase-tools": "^15.15.0",
     "postcss": "^8",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8"

@@ -1,7 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/sections/HeroSection";
+import TrustSection from "@/components/sections/TrustSection";
+import PositioningSection from "@/components/sections/PositioningSection";
 import ProjectsPreview from "@/components/sections/ProjectsPreview";
 import CapabilitiesSection from "@/components/sections/CapabilitiesSection";
+import EcosystemSection from "@/components/sections/EcosystemSection";
 import ContactCTA from "@/components/sections/ContactCTA";
 
 type Props = {
@@ -15,8 +18,11 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <HeroSection />
+      <TrustSection />
+      <PositioningSection />
       <ProjectsPreview />
       <CapabilitiesSection />
+      <EcosystemSection />
       <ContactCTA />
     </>
   );

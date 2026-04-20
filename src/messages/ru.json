@@ -11,7 +11,122 @@
     "lab": "Бюро",
     "content": "Контент",
     "shop": "Магазин",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "menu": "Меню",
+    "close": "Закрыть"
+  },
+  "about": {
+    "meta": {
+      "title": "О Марке | TheMarkest",
+      "description": "Серийный CTO, основатель конструкторского бюро, создатель технических шоу и популяризатор инженерного творчества."
+    },
+    "hero": {
+      "eyebrow": "О Марке",
+      "title": "Инженер, основатель, технический рассказчик",
+      "lead": "Я строю продукты на стыке hardware и software, запускаю стартапы как CTO и превращаю инженерию в зрелищный контент."
+    },
+    "bio": {
+      "title": "Биография",
+      "body": "Mark Bogdanov — серийный CTO и основатель конструкторского бюро. За плечами десятки прототипов, патенты, запущенные продукты и собственные технические шоу. Работаю с фаундерами, брендами и продакшнами, превращая идеи в работающие системы."
+    },
+    "timeline": {
+      "title": "Хронология",
+      "items": [
+        {
+          "year": "2014",
+          "title": "Первые прототипы",
+          "body": "Старт в робототехнике и встраиваемых системах."
+        },
+        {
+          "year": "2018",
+          "title": "Первый CTO",
+          "body": "Запуск стартапа в роли технического директора."
+        },
+        {
+          "year": "2021",
+          "title": "Конструкторское бюро",
+          "body": "Открытие собственной мастерской и команды."
+        },
+        {
+          "year": "2024",
+          "title": "Технические шоу",
+          "body": "Запуск медиа-формата о технологиях и инженерии."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Стек и компетенции",
+      "groups": {
+        "engineering": {
+          "title": "Инженерия",
+          "items": ["Embedded", "Robotics", "Mechatronics", "PCB Design", "3D Printing", "CNC"]
+        },
+        "software": {
+          "title": "Софт",
+          "items": ["TypeScript", "Next.js", "Node.js", "Python", "Three.js", "Firebase"]
+        },
+        "product": {
+          "title": "Продукт",
+          "items": ["CTO Strategy", "R&D", "Prototyping", "Team Building", "Tech Direction"]
+        }
+      }
+    }
+  },
+  "projectsPage": {
+    "meta": {
+      "title": "Проекты | TheMarkest",
+      "description": "Флагманские проекты, прототипы и инженерные эксперименты."
+    },
+    "hero": {
+      "eyebrow": "Проекты",
+      "title": "Реализованные системы и прототипы",
+      "lead": "Подборка значимых работ — от стартапов до инженерных шоу."
+    },
+    "filters": {
+      "all": "Все",
+      "startup": "Стартапы",
+      "hardware": "Hardware",
+      "show": "Шоу",
+      "rnd": "R&D"
+    },
+    "card": {
+      "viewCase": "Смотреть кейс",
+      "year": "Год",
+      "role": "Роль"
+    },
+    "categories": {
+      "startup": "Стартап",
+      "hardware": "Hardware",
+      "show": "Шоу",
+      "rnd": "R&D"
+    },
+    "empty": "Проектов в этой категории пока нет."
+  },
+  "projectDetail": {
+    "meta": {
+      "titleSuffix": " | TheMarkest"
+    },
+    "eyebrow": "Кейс",
+    "back": "← Все проекты",
+    "info": {
+      "year": "Год",
+      "role": "Роль",
+      "category": "Категория",
+      "tags": "Теги"
+    },
+    "sections": {
+      "overview": "Обзор",
+      "tech": "Технологии",
+      "outcome": "Результат"
+    },
+    "notFound": {
+      "title": "Проект не найден",
+      "description": "Возможно, кейс ещё в разработке."
+    },
+    "cta": {
+      "title": "Похожий проект на уме?",
+      "button": "Обсудить"
+    }
   },
   "hero": {
     "headline": "Серийный CTO & Technical Creator",
@@ -31,7 +146,14 @@
   },
   "sections": {
     "trust": {
-      "title": "Доверие"
+      "title": "Доверие",
+      "subtitle": "Инженерия с подтверждённым опытом",
+      "metrics": {
+        "years": { "value": "10+", "label": "лет в инженерии" },
+        "projects": { "value": "40+", "label": "запущенных проектов" },
+        "startups": { "value": "8", "label": "стартапов как CTO" },
+        "audience": { "value": "500K+", "label": "аудитория" }
+      }
     },
     "positioning": {
       "title": "Кто такой Mark",
@@ -55,7 +177,13 @@
     },
     "ecosystem": {
       "title": "Контент-экосистема",
-      "description": "Где следить за проектами, разборами и закулисьем"
+      "description": "Где следить за проектами, разборами и закулисьем",
+      "channels": {
+        "youtube": { "name": "YouTube", "handle": "@themarkest", "description": "Длинные разборы и шоу" },
+        "telegram": { "name": "Telegram", "handle": "@themarkest", "description": "Закулисье и заметки" },
+        "instagram": { "name": "Instagram", "handle": "@themarkest", "description": "Визуальный поток" },
+        "tiktok": { "name": "TikTok", "handle": "@themarkest", "description": "Короткие концепты" }
+      }
     },
     "bureau": {
       "title": "Конструкторское бюро",
@@ -95,8 +223,127 @@
   },
   "common": {
     "loading": "Загрузка...",
+    "loadingPage": "Загрузка страницы...",
     "readMore": "Подробнее",
     "backToTop": "Наверх",
     "switchLang": "EN"
+  },
+  "errors": {
+    "generic": {
+      "title": "Что-то пошло не так",
+      "description": "Произошла непредвиденная ошибка. Попробуйте ещё раз или вернитесь на главную.",
+      "retry": "Повторить",
+      "home": "На главную"
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Контакт | TheMarkest",
+      "description": "Свяжитесь с Mark Bogdanov — партнёрство, заказы в бюро, медиа, выступления."
+    },
+    "hero": {
+      "eyebrow": "Контакт",
+      "title": "Давайте обсудим проект",
+      "lead": "Опишите задачу — отвечу в течение 48 часов."
+    },
+    "form": {
+      "type": {
+        "label": "Тип запроса",
+        "options": {
+          "partnership": "Партнёрство",
+          "founder": "Стартап / CTO",
+          "bureau": "Бюро",
+          "media": "Медиа / Выступление",
+          "product": "Продукт / Мерч",
+          "general": "Общий вопрос"
+        }
+      },
+      "name": {
+        "label": "Имя",
+        "placeholder": "Ваше имя"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@example.com"
+      },
+      "company": {
+        "label": "Компания",
+        "placeholder": "Необязательно"
+      },
+      "message": {
+        "label": "Сообщение",
+        "placeholder": "Расскажите о проекте..."
+      },
+      "submit": "Отправить",
+      "submitting": "Отправка...",
+      "success": "Сообщение отправлено. Отвечу в ближайшее время.",
+      "error": "Не удалось отправить. Попробуйте ещё раз.",
+      "errors": {
+        "name": "Введите имя",
+        "email": "Некорректный email",
+        "message": "Сообщение слишком короткое",
+        "type": "Выберите тип"
+      }
+    },
+    "direct": {
+      "title": "Прямые каналы",
+      "email": "hello@themarkest.me",
+      "telegram": "@themarkest"
+    }
+  },
+  "shopPage": {
+    "meta": {
+      "title": "Магазин | TheMarkest",
+      "description": "Авторские объекты, мерч и лимитированные дропы от TheMarkest."
+    },
+    "hero": {
+      "eyebrow": "Магазин",
+      "title": "Объекты, мерч и дропы",
+      "lead": "Лимитированные изделия из бюро и фирменный мерч."
+    },
+    "categories": {
+      "all": "Всё",
+      "objects": "Объекты",
+      "merch": "Мерч",
+      "prints": "Принты"
+    },
+    "card": {
+      "soldOut": "Распродано",
+      "preorder": "Предзаказ",
+      "from": "от",
+      "view": "Смотреть"
+    },
+    "empty": "Скоро здесь появятся новые позиции.",
+    "notice": "Магазин в режиме превью. Оплата временно отключена."
+  },
+  "errors": {
+    "generic": {
+      "title": "Что-то пошло не так",
+      "description": "Произошла непредвиденная ошибка. Попробуйте обновить страницу.",
+      "retry": "Повторить",
+      "home": "На главную"
+    }
+  },
+  "pagesMeta": {
+    "collaboration": {
+      "title": "Сотрудничество | TheMarkest",
+      "description": "Форматы работы: партнёрство, CTO-роль, заказы в бюро, медиа."
+    },
+    "lab": {
+      "title": "Бюро | TheMarkest",
+      "description": "Конструкторское бюро TheMarkest — команда, мастерская, R&D."
+    },
+    "content": {
+      "title": "Контент | TheMarkest",
+      "description": "Видео, разборы, технические шоу и закулисье."
+    },
+    "privacy": {
+      "title": "Политика конфиденциальности | TheMarkest",
+      "description": "Как мы обрабатываем персональные данные."
+    },
+    "terms": {
+      "title": "Условия | TheMarkest",
+      "description": "Условия использования сайта themarkest.me."
+    }
   }
 }
