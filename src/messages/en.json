@@ -16,12 +16,18 @@
   "hero": {
     "headline": "Serial CTO & Technical Creator",
     "subheadline": "Turning complex technologies into products, prototypes, and spectacular projects at the intersection of engineering, design, and showmanship",
+    "status": "BUILDING THE FUTURE",
     "cta": {
       "projects": "View Projects",
       "collaborate": "Discuss Collaboration",
       "social": "Social",
       "shop": "Shop"
     }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist.",
+    "goHome": "Go Home"
   },
   "sections": {
     "trust": {
@@ -71,6 +77,16 @@
         "general": "General Inquiry"
       }
     }
+  },
+  "social": {
+    "instagram": "Instagram",
+    "telegram": "Telegram",
+    "youtube": "YouTube",
+    "tiktok": "TikTok",
+    "threads": "Threads",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "x": "X"
   },
   "footer": {
     "rights": "All rights reserved",

@@ -1,4 +1,3 @@
-import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/sections/HeroSection";
 import ProjectsPreview from "@/components/sections/ProjectsPreview";

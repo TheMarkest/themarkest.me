@@ -26,7 +26,7 @@ export default function HeroSection() {
         >
           <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-accent)]" />
           <span className="font-[family-name:var(--font-mono)] text-xs text-[var(--color-text-secondary)]">
-            BUILDING THE FUTURE
+            {t("status")}
           </span>
         </motion.div>
 

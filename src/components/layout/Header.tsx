@@ -9,6 +9,7 @@ const navKeys = [
   "projects",
   "collaboration",
   "lab",
+  "content",
   "shop",
   "contact",
 ] as const;
@@ -32,7 +33,7 @@ export default function Header() {
           {navKeys.map((key) => (
             <Link
               key={key}
-              href={key === "about" ? "/about" : `/${key}`}
+              href={`/${key}`}
               className="text-sm text-[var(--color-text-secondary)] transition-colors duration-[var(--duration-fast)] hover:text-[var(--color-text)]"
             >
               {t(key)}

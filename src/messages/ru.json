@@ -16,12 +16,18 @@
   "hero": {
     "headline": "Серийный CTO & Technical Creator",
     "subheadline": "Превращаю сложные технологии в продукты, прототипы и зрелищные проекты на стыке инженерии, дизайна и шоу",
+    "status": "СТРОИМ БУДУЩЕЕ",
     "cta": {
       "projects": "Смотреть проекты",
       "collaborate": "Обсудить сотрудничество",
       "social": "Соцсети",
       "shop": "Магазин"
     }
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "description": "Запрашиваемая страница не существует.",
+    "goHome": "На главную"
   },
   "sections": {
     "trust": {
@@ -71,6 +77,16 @@
         "general": "Общий вопрос"
       }
     }
+  },
+  "social": {
+    "instagram": "Instagram",
+    "telegram": "Telegram",
+    "youtube": "YouTube",
+    "tiktok": "TikTok",
+    "threads": "Threads",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "x": "X"
   },
   "footer": {
     "rights": "Все права защищены",
