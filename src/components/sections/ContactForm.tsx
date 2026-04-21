@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
@@ -26,13 +26,17 @@ interface Props {
   initialType: TypeKey;
 }
 
+// Reads the current ?type= param and remounts ContactForm whenever it changes.
+export function ContactFormWrapper() {
+  const searchParams = useSearchParams();
+  const raw = searchParams.get("type");
+  const resolvedType: TypeKey = isTypeKey(raw) ? raw : "general";
+  return <ContactForm key={resolvedType} initialType={resolvedType} />;
+}
+
 export default function ContactForm({ initialType }: Props) {
   const t = useTranslations("contactPage.form");
-  const searchParams = useSearchParams();
 
-  // initialType comes from the server component (reliable).
-  // useSearchParams keeps the chip in sync if the user navigates between
-  // type chips while already on the contact page (client-side nav).
   const [type, setType] = useState<TypeKey>(initialType);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,13 +44,6 @@ export default function ContactForm({ initialType }: Props) {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
-
-  useEffect(() => {
-    const param = searchParams.get("type");
-    if (isTypeKey(param)) {
-      setType(param);
-    }
-  }, [searchParams]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
