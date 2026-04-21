@@ -1,7 +1,5 @@
 import "server-only";
 
-import { adminDb } from "@/lib/firebase/admin";
-
 export type ProjectCategory = "startup" | "hardware" | "show" | "rnd";
 
 export type Project = {
@@ -18,8 +16,6 @@ export type Project = {
   featured?: boolean;
   order?: number;
 };
-
-const COLLECTION = "projects";
 
 export const MOCK_PROJECTS: Project[] = [
   {
@@ -153,43 +149,16 @@ export const MOCK_PROJECTS: Project[] = [
   },
 ];
 
-function fromDoc(
-  doc: FirebaseFirestore.QueryDocumentSnapshot | FirebaseFirestore.DocumentSnapshot,
-): Project {
-  return { slug: doc.id, ...(doc.data() as Omit<Project, "slug">) };
-}
-
 export async function getAllProjects(): Promise<Project[]> {
-  if (!adminDb) return MOCK_PROJECTS;
-  try {
-    const snap = await adminDb
-      .collection(COLLECTION)
-      .orderBy("order", "asc")
-      .orderBy("year", "desc")
-      .get();
-    if (snap.empty) return MOCK_PROJECTS;
-    return snap.docs.map(fromDoc);
-  } catch (e) {
-    console.warn("[projects] getAllProjects fallback to mocks:", e);
-    return MOCK_PROJECTS;
-  }
+  return MOCK_PROJECTS;
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  if (adminDb) {
-    try {
-      const doc = await adminDb.collection(COLLECTION).doc(slug).get();
-      if (doc.exists) return fromDoc(doc);
-    } catch (e) {
-      console.warn("[projects] getProjectBySlug error, falling back:", e);
-    }
-  }
   return MOCK_PROJECTS.find((p) => p.slug === slug) ?? null;
 }
 
 export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
-  const all = await getAllProjects();
-  const featured = all.filter((p) => p.featured === true);
-  const pool = featured.length > 0 ? featured : all;
+  const featured = MOCK_PROJECTS.filter((p) => p.featured === true);
+  const pool = featured.length > 0 ? featured : MOCK_PROJECTS;
   return pool.slice(0, limit);
 }
