@@ -2,19 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export default function AboutPageClient() {
   const t = useTranslations("about");
 
-  // Since next-intl might need a list for items, we can use `t.raw`
-  const timelineItems = t.raw("timeline.items") as {
+  const rawTimeline = t.raw("timeline.items");
+  const timelineItems = (Array.isArray(rawTimeline) ? rawTimeline : []) as {
     year: string;
     title: string;
     body: string;
   }[];
 
-  const skillGroups = t.raw("skills.groups") as Record<
+  const rawSkills = t.raw("skills.groups");
+  const skillGroups = (typeof rawSkills === "object" && rawSkills !== null && !Array.isArray(rawSkills) ? rawSkills : {}) as Record<
     string,
     { title: string; items: string[] }
   >;
@@ -109,7 +109,8 @@ export default function AboutPageClient() {
               className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6 transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-bg-surface)]"
             >
               <h3 className="mb-6 font-[family-name:var(--font-mono)] text-[var(--color-accent)]">
-                // {group.title}
+                {"// "}
+                {group.title}
               </h3>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((skill, index) => (
