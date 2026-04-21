@@ -1,47 +1,44 @@
 import { useTranslations } from "next-intl";
-import { Youtube, Send, Instagram, Music2 } from "lucide-react";
-
-const channels = [
-  { key: "youtube", icon: Youtube },
-  { key: "telegram", icon: Send },
-  { key: "instagram", icon: Instagram },
-  { key: "tiktok", icon: Music2 },
-] as const;
 
 export default function EcosystemSection() {
   const t = useTranslations("sections.ecosystem");
 
+  const channels = ["youtube", "telegram", "instagram", "tiktok"] as const;
+
   return (
-    <section className="border-t border-[var(--color-border)] py-24 md:py-32">
-      <div className="mx-auto max-w-7xl space-y-12 px-6">
-        <div>
-          <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-[var(--color-accent)]">
-            ECOSYSTEM
-          </span>
-          <h2 className="mt-2 font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight md:text-5xl">
-            {t("title")}
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
-            {t("description")}
-          </p>
+    <section className="py-24 border-t border-[var(--color-border,#ffffff12)] bg-[var(--color-bg,#0a0a0f)]">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div className="max-w-xl">
+            <h2 className="text-3xl md:text-5xl font-handjet font-bold text-[var(--color-text,#f0f0f5)] tracking-wider uppercase mb-4">
+              {t("title")}
+            </h2>
+            <p className="text-lg text-[var(--color-secondary,#8888a0)] font-sans">
+              {t("description")}
+            </p>
+          </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {channels.map(({ key, icon: Icon }) => (
-            <div
-              key={key}
-              className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6 transition hover:border-[var(--color-border-strong)]"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {channels.map((channel) => (
+            <div 
+              key={channel} 
+              className="group flex flex-col p-6 rounded-xl border border-[var(--color-border,#ffffff12)] bg-[var(--color-elevated,#12121a)] hover:border-[var(--color-accent,#00e5ff)] transition-colors duration-300"
             >
-              <Icon className="mb-4 h-6 w-6 text-[var(--color-accent)]" />
-              <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold">
-                {t(`channels.${key}.name`)}
-              </h3>
-              <p className="mt-1 font-[family-name:var(--font-mono)] text-sm text-[var(--color-accent)]">
-                {t(`channels.${key}.handle`)}
-              </p>
-              <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-                {t(`channels.${key}.description`)}
-              </p>
+              <div className="flex justify-between items-center mb-6">
+                <span className="text-xl font-handjet font-bold text-[var(--color-text,#f0f0f5)] tracking-wide">
+                  {t(`channels.${channel}.name`)}
+                </span>
+              </div>
+              
+              <div className="mt-auto">
+                <div className="text-[var(--color-accent,#00e5ff)] font-mono text-sm mb-2">
+                  {t(`channels.${channel}.handle`)}
+                </div>
+                <p className="text-sm text-[var(--color-secondary,#8888a0)] font-sans">
+                  {t(`channels.${channel}.description`)}
+                </p>
+              </div>
             </div>
           ))}
         </div>

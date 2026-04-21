@@ -11,7 +11,9 @@
     "lab": "Bureau",
     "content": "Content",
     "shop": "Shop",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
   },
   "hero": {
     "headline": "Serial CTO & Technical Creator",
@@ -25,7 +27,26 @@
   },
   "sections": {
     "trust": {
-      "title": "Trust"
+      "title": "Trust",
+      "subtitle": "Engineering with proven track record",
+      "metrics": {
+        "years": {
+          "value": "10+",
+          "label": "years in engineering"
+        },
+        "projects": {
+          "value": "40+",
+          "label": "shipped projects"
+        },
+        "startups": {
+          "value": "8",
+          "label": "startups as CTO"
+        },
+        "audience": {
+          "value": "500K+",
+          "label": "audience"
+        }
+      }
     },
     "positioning": {
       "title": "Who is Mark",
@@ -49,7 +70,29 @@
     },
     "ecosystem": {
       "title": "Content Ecosystem",
-      "description": "Where to follow projects, breakdowns, and behind-the-scenes"
+      "description": "Where to follow projects, breakdowns, and behind-the-scenes",
+      "channels": {
+        "youtube": {
+          "name": "YouTube",
+          "handle": "@themarkest",
+          "description": "Long-form breakdowns and shows"
+        },
+        "telegram": {
+          "name": "Telegram",
+          "handle": "@themarkest",
+          "description": "Behind the scenes and notes"
+        },
+        "instagram": {
+          "name": "Instagram",
+          "handle": "@themarkest",
+          "description": "Visual stream"
+        },
+        "tiktok": {
+          "name": "TikTok",
+          "handle": "@themarkest",
+          "description": "Short concepts"
+        }
+      }
     },
     "bureau": {
       "title": "Engineering Bureau",
@@ -82,5 +125,138 @@
     "readMore": "Read More",
     "backToTop": "Back to Top",
     "switchLang": "RU"
+  },
+  "about": {
+    "meta": {
+      "title": "About Mark | TheMarkest",
+      "description": "Serial CTO, engineering bureau founder, creator of technical shows, and advocate of engineering creativity."
+    },
+    "hero": {
+      "eyebrow": "About Mark",
+      "title": "Engineer, founder, technical storyteller",
+      "lead": "I build products at the intersection of hardware and software, launch startups as CTO, and turn engineering into spectacular content."
+    },
+    "bio": {
+      "title": "Biography",
+      "body": "Mark Bogdanov is a serial CTO and engineering bureau founder. Dozens of prototypes, patents, shipped products, and original technical shows. I work with founders, brands, and productions, turning ideas into working systems."
+    },
+    "timeline": {
+      "title": "Timeline",
+      "items": [
+        {
+          "year": "2014",
+          "title": "First prototypes",
+          "body": "Start in robotics and embedded systems."
+        },
+        {
+          "year": "2018",
+          "title": "First CTO role",
+          "body": "Launching a startup as technical director."
+        },
+        {
+          "year": "2021",
+          "title": "Engineering Bureau",
+          "body": "Opening own workshop and team."
+        },
+        {
+          "year": "2024",
+          "title": "Technical shows",
+          "body": "Launch of a media format about technology and engineering."
+        }
+      ]
+    },
+    "skills": {
+      "title": "Stack & Skills",
+      "groups": {
+        "engineering": {
+          "title": "Engineering",
+          "items": [
+            "Embedded",
+            "Robotics",
+            "Mechatronics",
+            "PCB Design",
+            "3D Printing",
+            "CNC"
+          ]
+        },
+        "software": {
+          "title": "Software",
+          "items": [
+            "TypeScript",
+            "Next.js",
+            "Node.js",
+            "Python",
+            "Three.js",
+            "Firebase"
+          ]
+        },
+        "product": {
+          "title": "Product",
+          "items": [
+            "CTO Strategy",
+            "R&D",
+            "Prototyping",
+            "Team Building",
+            "Tech Direction"
+          ]
+        }
+      }
+    }
+  },
+  "projectsPage": {
+    "meta": {
+      "title": "Projects | TheMarkest",
+      "description": "Flagship projects, prototypes, and engineering experiments."
+    },
+    "hero": {
+      "eyebrow": "Projects",
+      "title": "Shipped systems and prototypes",
+      "lead": "A selection of significant work — from startups to engineering shows."
+    },
+    "filters": {
+      "all": "All",
+      "startup": "Startups",
+      "hardware": "Hardware",
+      "show": "Shows",
+      "rnd": "R&D"
+    },
+    "card": {
+      "viewCase": "View case",
+      "year": "Year",
+      "role": "Role"
+    },
+    "categories": {
+      "startup": "Startup",
+      "hardware": "Hardware",
+      "show": "Show",
+      "rnd": "R&D"
+    },
+    "empty": "No projects in this category yet."
+  },
+  "projectDetail": {
+    "meta": {
+      "titleSuffix": " | TheMarkest"
+    },
+    "eyebrow": "Case study",
+    "back": "← All projects",
+    "info": {
+      "year": "Year",
+      "role": "Role",
+      "category": "Category",
+      "tags": "Tags"
+    },
+    "sections": {
+      "overview": "Overview",
+      "tech": "Tech stack",
+      "outcome": "Outcome"
+    },
+    "notFound": {
+      "title": "Project not found",
+      "description": "This case study may not be published yet."
+    },
+    "cta": {
+      "title": "Have a similar project in mind?",
+      "button": "Get in touch"
+    }
   }
 }
