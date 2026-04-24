@@ -10,7 +10,7 @@ export default function HeroSection() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--color-bg)]">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* 3D Scene Background instead of grid/noise */}
       <HeroSceneClient />
 
