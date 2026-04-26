@@ -1,0 +1,69 @@
+﻿import type { Metadata } from "next";
+import { Suspense } from "react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ContactFormWrapper } from "@/components/sections/ContactForm";
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "contactPage.meta" });
+  return { title: t("title"), description: t("description") };
+}
+
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "contactPage" });
+
+  return (
+    <main className="min-h-screen">
+      <div className="mx-auto max-w-3xl px-6 pt-32 pb-32 md:pt-40">
+        <section>
+          <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-[var(--color-accent)]">
+            {t("hero.eyebrow")}
+          </span>
+          <h1 className="mt-4 font-[family-name:var(--font-display)] text-5xl font-bold leading-[1.1] tracking-tight md:text-6xl">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            {t("hero.lead")}
+          </p>
+        </section>
+
+        <Suspense fallback={null}>
+          <ContactFormWrapper />
+        </Suspense>
+
+        <section className="mt-20 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6">
+          <h2 className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-widest text-[var(--color-text-secondary)]">
+            {t("direct.title")}
+          </h2>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            <li>
+              <a
+                href={`mailto:${t("direct.email")}`}
+                className="font-[family-name:var(--font-mono)] text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
+              >
+                {t("direct.email")}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://t.me/${t("direct.telegram").replace(/^@/, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-[family-name:var(--font-mono)] text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
+              >
+                {t("direct.telegram")}
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  );
+}

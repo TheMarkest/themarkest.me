@@ -1,36 +1,57 @@
-# TheMarkest Portfolio (Static / GitHub Pages)
+# themarkest.me v2
 
-This repository now serves a fully static version of the portfolio using plain HTML, CSS, and vanilla JS + Three.js.
+Personal technology headquarters of Mark Bogdanov / TheMarkest.
 
-## Structure
+## Stack
 
-- `docs/` – Published GitHub Pages site (configure Pages: Branch = `master`, Folder = `/docs`).
-- `public/` – Static assets (favicon, logo).
-- `main.js`, `styles.css` (also imported inside `docs/`).
-- Legacy Next.js / config files removed to simplify hosting.
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animation:** Framer Motion + GSAP
+- **3D:** Three.js + React Three Fiber + drei
+- **i18n:** next-intl (RU + EN)
+- **Hosting:** Firebase App Hosting
 
 ## Development
-Open `docs/index.html` directly or run a lightweight local server:
 
-PowerShell:
+```bash
+npm install
+npm run dev
 ```
-python -m http.server 8080
+
+Open [http://localhost:9002](http://localhost:9002).
+
+## Project Structure
+
 ```
-Then: http://localhost:8080/docs/
+src/
+├── app/
+│   ├── globals.css          # Design system & Tailwind v4 theme
+│   ├── layout.tsx           # Root layout (fonts, metadata)
+│   └── [locale]/            # i18n routing
+│       ├── layout.tsx       # Locale layout (next-intl provider)
+│       ├── page.tsx         # Home page
+│       ├── about/
+│       ├── projects/
+│       │   └── [slug]/
+│       ├── collaboration/
+│       ├── lab/
+│       ├── content/
+│       ├── shop/
+│       └── contact/
+├── components/
+│   ├── layout/              # Header, Footer
+│   ├── sections/            # Page sections
+│   ├── ui/                  # Reusable UI components
+│   └── three/               # 3D scenes & components
+├── i18n/                    # next-intl config & routing
+├── lib/                     # Utilities
+└── messages/                # RU/EN translation files
+```
 
-## Internationalization
-Simple in-file dictionaries (EN/RU) in `main.js` with `data-i18n` attributes.
+## Architecture Notes
 
-## Three.js Skill Sphere
-Renders randomized distribution of skill spheres sized by importance. Hover to view names.
-
-## Updating Content
-- Skills / Projects / Services / Achievements arrays inside `main.js`.
-- Contact links inside `docs/index.html`.
-
-## Future Ideas
-- Add image thumbnails for projects.
-- Add form backend (Formspree / static email obfuscation).
-- Generate skill positions deterministically (hash-based) for consistency.
-
-MIT License (if desired) – feel free to add a LICENSE file.
+- **Firebase App Hosting** for SSR deployment
+- **next-intl** with `/ru/` and `/en/` URL prefixes
+- **Progressive enhancement:** content first, then animations, then 3D
+- **Fallbacks** for WebGL, reduced motion, slow connections

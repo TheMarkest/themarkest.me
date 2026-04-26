@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   TheMarkest.me — Design System v2
+   Premium dark tech aesthetic with laboratory/R&D feel
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Color Palette ── */
+  --color-bg: #0a0a0f;
+  --color-bg-elevated: #12121a;
+  --color-bg-surface: #1a1a26;
+  --color-bg-overlay: #222233;
+
+  --color-text: #f0f0f5;
+  --color-text-secondary: #8888a0;
+  --color-text-muted: #555570;
+
+  --color-accent: #00e5ff;
+  --color-accent-hover: #33eeff;
+  --color-accent-dim: #00e5ff33;
+
+  --color-signal: #ff3366;
+  --color-signal-dim: #ff336633;
+
+  --color-border: #ffffff12;
+  --color-border-strong: #ffffff25;
+
+  --color-glow-accent: #00e5ff40;
+  --color-glow-signal: #ff336640;
+
+  /* ── Typography ── */
+  --font-display: "Handjet", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* ── Spacing ── */
+  --spacing-section: 8rem;
+  --spacing-section-mobile: 4rem;
+
+  /* ── Borders ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* ── Transitions ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+}
+
+/* ── Base Styles ── */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-dim);
+    color: var(--color-text);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  .text-gradient-accent {
+    background: linear-gradient(135deg, var(--color-accent), #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-signal {
+    background: linear-gradient(135deg, var(--color-signal), #ff6b35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px var(--color-glow-accent), 0 0 60px var(--color-glow-accent);
+  }
+
+  .glow-signal {
+    box-shadow: 0 0 20px var(--color-glow-signal), 0 0 60px var(--color-glow-signal);
+  }
+
+  .border-glow {
+    border: 1px solid var(--color-border-strong);
+    box-shadow: inset 0 0 30px var(--color-accent-dim);
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(var(--color-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
